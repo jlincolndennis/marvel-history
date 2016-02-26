@@ -1,0 +1,22 @@
+body {
+  background-color: rgb(28,	29,	33)	;
+}
+
+header {
+  background-color: rgb(232,	33,	38);
+  text-align: center;
+  height: 100px;
+  box-shadow:
+      0 1px 1px rgba(0,0,0,0.15), /* The top layer shadow */
+      0 10px 0 -5px rgb(237, 231, 231), /* The second layer */
+      0 10px 1px -4px rgba(0,0,0,0.15), /* The second layer shadow */
+}
+
+header img {
+  width: 200px;
+  // border: 1px solid white;
+  margin: -7px 7px;
+  // top: 10px;
+  // position: absolute;
+
+}

@@ -1,0 +1,21 @@
+body {
+  background-color: #1c1d21; }
+
+header {
+  background-color: #e82126;
+  text-align: center;
+  height: 100px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #ede7e7, 0 10px 1px -4px rgba(0, 0, 0, 0.15); }
+
+header img {
+  width: 200px;
+  margin: -7px 7px; }
+
+h1 {
+  font-family: Impact;
+  color: white;
+  font-weight: normal;
+  font-size: 3.5em;
+  display: inline-block;
+  margin: 15px;
+  height: auto; }
