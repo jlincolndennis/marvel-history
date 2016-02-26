@@ -1,5 +1,5 @@
 h1 {
-  font-family: Impact;
+  font-family: 'Bangers';
   color: white;
   font-weight: normal;
   font-size: 3.5em;
@@ -8,4 +8,27 @@ h1 {
   // border: 1px solid white;
   height: auto;
   // position: absolute;
+}
+
+nav {
+font-family: 'Bangers';
+font-size: 1.5em;
+}
+
+h2 {
+  font-family: Impact;
+  font-size: 2em;
+
+}
+
+h4 {
+  margin: 0;
+  padding: 10px;
+  // background-color: rgb(251,	251,	153);
+  background: radial-gradient(white, rgb(250,	247,	153));
+  display: inline-block;
+  border: 2px solid black;
+  font-weight: lighter;
+  font-size: 1.5em;
+  font-family: 'Bangers'
 }

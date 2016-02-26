@@ -1,5 +1,5 @@
 body {
-  background-color: #1c1d21; }
+  background-color: #4b4c4e; }
 
 header {
   background-color: #e82126;
@@ -11,11 +11,55 @@ header img {
   width: 200px;
   margin: -7px 7px; }
 
+nav {
+  width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border: 3px solid black; }
+
+.results {
+  width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border: 3px solid black;
+  height: 350px; }
+  .results img {
+    width: 200px;
+    height: auto;
+    float: left;
+    margin: 10px;
+    border: 1px solid black; }
+
+.details {
+  float: left;
+  margin: 10px;
+  border: 1px solid black; }
+
 h1 {
-  font-family: Impact;
+  font-family: 'Bangers';
   color: white;
   font-weight: normal;
   font-size: 3.5em;
   display: inline-block;
   margin: 15px;
   height: auto; }
+
+nav {
+  font-family: 'Bangers';
+  font-size: 1.5em; }
+
+h2 {
+  font-family: Impact;
+  font-size: 2em; }
+
+h4 {
+  margin: 0;
+  padding: 10px;
+  background: radial-gradient(white, #faf799);
+  display: inline-block;
+  border: 2px solid black;
+  font-weight: lighter;
+  font-size: 1.5em;
+  font-family: 'Bangers'; }

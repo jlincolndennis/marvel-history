@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(28,	29,	33)	;
+  background-color: rgb(75, 76, 78);
 }
 
 header {
@@ -14,9 +14,38 @@ header {
 
 header img {
   width: 200px;
-  // border: 1px solid white;
   margin: -7px 7px;
-  // top: 10px;
-  // position: absolute;
+}
+
+nav {
+  width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border: 3px solid black;
+
+}
+
+.results {
+  width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border: 3px solid black;
+  height: 350px;
+
+  img {
+    width: 200px;
+    height: auto;
+    float:left;
+    margin: 10px;
+    border: 1px solid black;
+  }
+}
+
+.details {
+  float: left;
+  margin: 10px;
+  border: 1px solid black;
 
 }
