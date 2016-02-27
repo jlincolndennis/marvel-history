@@ -1,9 +1,11 @@
+ $marvelRed: rgb(232,	33,	38);
+
 body {
   background-color: rgb(75, 76, 78);
 }
 
 header {
-  background-color: rgb(232,	33,	38);
+  background-color: $marvelRed;
   text-align: center;
   height: 100px;
   box-shadow:
@@ -17,35 +19,67 @@ header img {
   margin: -7px 7px;
 }
 
-nav {
-  width: 800px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: white;
-  border: 3px solid black;
-
-}
-
-.results {
+%whiteBox {
   width: 800px;
   margin: 20px auto;
   padding: 20px;
   background-color: white;
   border: 3px solid black;
-  height: 350px;
+}
 
+nav, .age-results, .search {
+@extend %whiteBox;
+}
+
+.issue {
+  clear:both;
+  margin: 25px 0;
+  height: auto;
+  overflow: auto;
+  // height: 300px;
+  border-bottom: 1px solid black;
+}
+.cover {
+  float: left;
+  margin-bottom: 30px;
   img {
-    width: 200px;
+    width: 175px;
     height: auto;
-    float:left;
     margin: 10px;
     border: 1px solid black;
   }
 }
-
 .details {
   float: left;
   margin: 10px;
-  border: 1px solid black;
+  width: 500px;
+  h2 {
+    margin: 0 0 5px;
+  }
+  h3 {
+    // font-style: italic;
+    margin: 0 0 20px;
+  }
+}
 
+.pull-button {
+  margin-left: 340px;
+  margin-bottom: 25px
+
+}
+.age-results footer {
+  background-color: white;
+  text-align: center;
+  clear: both;
+  padding: 0;
+  margin: 0;
+}
+
+footer {
+  margin-top: 150px;
+  padding-top: 20px;
+  background-color: $marvelRed;
+  height: 60px;
+  color: white;
+  text-align: center;
 }
