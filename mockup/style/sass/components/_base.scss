@@ -1,4 +1,4 @@
- $marvelRed: rgb(232,	33,	38);
+$marvelRed: rgb(232,	33,	38);
 
 body {
   background-color: rgb(75, 76, 78);
@@ -28,22 +28,25 @@ header img {
 }
 
 nav {
-margin-bottom: 30px;
+width: 562px;
+margin: 50px auto;
 }
 
-.age-results, .search {
+.age-results, .search, .help, .about, .pull-list {
 @extend %whiteBox;
 }
 
 .search {
-  margin-top: 50px;
   text-align: center;
 }
 
 form {
   width: 340px;
   margin: 0 auto;
-  // display: none;
+}
+
+.about, .help, .pull-list, .age-results {
+  display: none;
 }
 
 .issue {
@@ -72,16 +75,20 @@ form {
     margin: 0 0 5px;
   }
   h3 {
-    // font-style: italic;
     margin: 0 0 20px;
   }
 }
 
-.pull-button {
+.pull-button, .unpull-button {
   margin-left: 340px;
-  margin-bottom: 25px
-
+  margin-bottom: 25px;
+  cursor: pointer;
 }
+
+.issue .unpull-button {
+  display: none;
+}
+
 .age-results footer {
   background-color: white;
   text-align: center;
@@ -91,9 +98,9 @@ form {
 }
 
 footer {
-  margin-top: 150px;
+  margin-top: 200px;
   padding-top: 20px;
-  background-color: $marvelRed;
+  // background-color: $marvelRed;
   height: 60px;
   color: white;
   text-align: center;

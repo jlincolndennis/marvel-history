@@ -19,11 +19,22 @@ h1 {
   font-family: 'Bangers'
 }
 
-nav p {
+nav a {
   @extend %yellowBox;
   margin-bottom: 0;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 15px;
+  // margin-left: 5px;
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    color: rgb(105, 106, 108);
+    border: 2px solid rgb(105, 106, 108);
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .search h4 {
@@ -38,7 +49,7 @@ h4 {
   margin: 5px 0;
 }
 
-.label, .pull-button {
+.label, .pull-button, .unpull-button{
   @extend %yellowBox;
 }
 

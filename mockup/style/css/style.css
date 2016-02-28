@@ -11,7 +11,7 @@ header img {
   width: 200px;
   margin: -7px 7px; }
 
-.age-results, .search {
+.age-results, .search, .help, .about, .pull-list {
   width: 800px;
   margin: 15px auto;
   padding: 15px;
@@ -19,15 +19,18 @@ header img {
   border: 3px solid black; }
 
 nav {
-  margin-bottom: 30px; }
+  width: 562px;
+  margin: 50px auto; }
 
 .search {
-  margin-top: 50px;
   text-align: center; }
 
 form {
   width: 340px;
   margin: 0 auto; }
+
+.about, .help, .pull-list, .age-results {
+  display: none; }
 
 .issue {
   clear: both;
@@ -54,9 +57,13 @@ form {
   .details h3 {
     margin: 0 0 20px; }
 
-.pull-button {
+.pull-button, .unpull-button {
   margin-left: 340px;
-  margin-bottom: 25px; }
+  margin-bottom: 25px;
+  cursor: pointer; }
+
+.issue .unpull-button {
+  display: none; }
 
 .age-results footer {
   background-color: white;
@@ -66,9 +73,8 @@ form {
   margin: 0; }
 
 footer {
-  margin-top: 150px;
+  margin-top: 200px;
   padding-top: 20px;
-  background-color: #e82126;
   height: 60px;
   color: white;
   text-align: center; }
@@ -82,7 +88,7 @@ h1 {
   margin: 15px;
   height: auto; }
 
-nav p, .label, .pull-button {
+nav a, .label, .pull-button, .unpull-button {
   margin-top: 0;
   padding: 10px;
   background: radial-gradient(white, #faf799);
@@ -92,10 +98,16 @@ nav p, .label, .pull-button {
   font-size: 1.5em;
   font-family: 'Bangers'; }
 
-nav p {
+nav a {
   margin-bottom: 0;
-  margin-right: 5px;
-  margin-left: 5px; }
+  margin-right: 15px;
+  text-decoration: none;
+  color: black; }
+  nav a:hover {
+    color: #696a6c;
+    border: 2px solid #696a6c; }
+  nav a:last-child {
+    margin-right: 0; }
 
 .search h4 {
   margin-bottom: 20px; }
@@ -134,3 +146,15 @@ select {
   font-weight: lighter;
   font-size: 1.5em;
   font-family: 'Bangers'; }
+
+#fake-search-button {
+  margin: 0 10px;
+  padding: 5px;
+  color: white;
+  background: #e82126;
+  display: inline-block;
+  border: 2px solid black;
+  font-weight: lighter;
+  font-size: 1.5em;
+  font-family: 'Bangers';
+  text-decoration: none; }
