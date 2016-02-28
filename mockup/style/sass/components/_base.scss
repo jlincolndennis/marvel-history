@@ -21,14 +21,29 @@ header img {
 
 %whiteBox {
   width: 800px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 15px auto;
+  padding: 15px;
   background-color: white;
   border: 3px solid black;
 }
 
-nav, .age-results, .search {
+nav {
+margin-bottom: 30px;
+}
+
+.age-results, .search {
 @extend %whiteBox;
+}
+
+.search {
+  margin-top: 50px;
+  text-align: center;
+}
+
+form {
+  width: 340px;
+  margin: 0 auto;
+  // display: none;
 }
 
 .issue {
@@ -36,9 +51,9 @@ nav, .age-results, .search {
   margin: 25px 0;
   height: auto;
   overflow: auto;
-  // height: 300px;
   border-bottom: 1px solid black;
 }
+
 .cover {
   float: left;
   margin-bottom: 30px;

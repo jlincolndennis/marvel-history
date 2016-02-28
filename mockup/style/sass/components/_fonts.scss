@@ -21,6 +21,13 @@ h1 {
 
 nav p {
   @extend %yellowBox;
+  margin-bottom: 0;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.search h4 {
+  margin-bottom: 20px;
 }
 
 h2 {

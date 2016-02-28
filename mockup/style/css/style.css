@@ -11,12 +11,23 @@ header img {
   width: 200px;
   margin: -7px 7px; }
 
-nav, .age-results, .search {
+.age-results, .search {
   width: 800px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 15px auto;
+  padding: 15px;
   background-color: white;
   border: 3px solid black; }
+
+nav {
+  margin-bottom: 30px; }
+
+.search {
+  margin-top: 50px;
+  text-align: center; }
+
+form {
+  width: 340px;
+  margin: 0 auto; }
 
 .issue {
   clear: both;
@@ -81,6 +92,14 @@ nav p, .label, .pull-button {
   font-size: 1.5em;
   font-family: 'Bangers'; }
 
+nav p {
+  margin-bottom: 0;
+  margin-right: 5px;
+  margin-left: 5px; }
+
+.search h4 {
+  margin-bottom: 20px; }
+
 h2 {
   font-size: 1.5em; }
 
@@ -95,3 +114,23 @@ h4 {
 
 footer a {
   color: white; }
+
+select {
+  font-weight: normal;
+  font-size: 1.5em;
+  padding: 15px 20px;
+  margin: 0 5px;
+  border: 1px solid black;
+  font-family: 'Bangers';
+  background-color: white; }
+
+#submit-search {
+  margin: 0 10px;
+  padding: 5px;
+  color: white;
+  background: #e82126;
+  display: inline-block;
+  border: 2px solid black;
+  font-weight: lighter;
+  font-size: 1.5em;
+  font-family: 'Bangers'; }

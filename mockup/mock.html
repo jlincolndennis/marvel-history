@@ -12,21 +12,19 @@
 <body>
 <header><h1>This Week In<img src="images/Marvel-logo.png" alt="">History!</h1></header>
 
-<nav><p>Home!</p> <p>About!</p> <p>Help!</p> <p>My Pull List!</p> <p>Marvel.com!</p></nav>
 
 <div class="search">
-  <h4>SEARCH!</h4><form action="" name="date">
-<select id="day">
-</select>
-<select id="month">
-</select>
-
-</form>
+  <nav><p>Home!</p> <p id='about'>About!</p> <p>Help!</p> <p>My Pull List!</p> <p>Marvel.com!</p></nav>
+  <h4 class='info'>Select a date to see comics released during that week throghout over 75 years of Marvel history!</h4>
+  <form action="" name="date">
+    <select id="month"></select>
+    <select id="day"></select>
+    <input type="submit" id="submit-search" value="Search!">
+  </form>
 </div>
 
 <div class="age-results">
   <h4 class='label'>Modern Age: 1985 - Present</h4>
-
   <div class='issue'>
     <div class='cover'>
       <img src="images/cover05.jpg" alt="">

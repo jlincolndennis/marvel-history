@@ -12,11 +12,17 @@ $(function () {
     day.append($('<option>').attr("value",(d+1)).text(d+1));
     };
 
-  $(day.children()[thisDate]).attr('selected', true)
+  $(day.children()[thisDate]).attr('selected', true);
 
   for (var m = 0; m < 12; m++) {
     month.append($('<option>').attr('value', (m+1)).text(monthNames[m]));
   };
-  $(month.children()[thisMonth]).attr('selected', true)
+  $(month.children()[thisMonth]).attr('selected', true);
+
+  $('#about').on('click', function () {
+    $('form').fadeToggle();
+    $('.info').fadeToggle();
+  });
+
 
 })
