@@ -63,9 +63,6 @@ $(function() {
       selectedDate = undefined;
     };
 
-    console.log(selectedMonth);
-    console.log(selectedDate);
-
     //  Create date One Week from selected
     var startDate = pad(selectedMonth) + "-" + pad(selectedDate);
     var oneWeekLater = weekify(selectedMonth, selectedDate);
@@ -97,9 +94,12 @@ $(function() {
         month += 1;
         day -= 31;
       }
+      if (month === 13) {
+        month = 1;
+      }
       return (pad(month) + "-" + pad(day));
     }
-    console.log("Start Date is: " + startDate);
+    console.log("Start Date is: " + startDate );
     console.log("End Date is: " + oneWeekLater);
 
     // Call Generation
@@ -114,23 +114,29 @@ $(function() {
       var hash = CryptoJS.MD5(timeStamp + privateKey + publicKey);
 
       url += "&ts=" + timeStamp + "&hash=" + hash;
-      console.log("Golden Call url " + url);
 
       $.get(url, function(response) {
         var issues = response.data.results
         console.log('success!');
-        console.log(response);
-        console.log(issues);
+        // console.log(response);
+        // console.log(issues);
         logInfo(issues);
-        // buildInfo(issues);
       })
 
       function  logInfo (issues) {
         for (var i = 0; i < issues.length; i++) {
-          console.log("Title: "+issues[i].title);
-          var pubDate = issues[i].dates[0].date;
-          var pubYear = pubDate.substr(0, 4);
-          console.log("Released: "+pubYear);
+          console.log("**************************");
+          var pubCode = issues[i].dates[0].date;
+          var pubYear = pubCode.substr(0, 4);
+          var pubDate = pubCode.substr(5, 5);
+          if (pubDate >= startDate && pubDate <= oneWeekLater) {
+            console.log("SHOW: "+ issues[i].title);
+          } else {
+            console.log("Do NOT Show: "+issues[i].title);
+          }
+          console.log("Released Year: "+pubYear);
+          console.log("Released Date: "+pubDate);
+          // console.log("Raw Date Code: "+pubCode);
           var plotDescription = issues[i].description;
           if (plotDescription !== null) {
             console.log("Summary:"+plotDescription);
@@ -139,18 +145,11 @@ $(function() {
           }
           if (issues[i].images[0]){
           console.log("Cover Image: "+issues[i].images[0].path+"."+issues[i].images[0].extension);
+          $('body').append('<img src="'+issues[i].images[0].path+"."+issues[i].images[0].extension+'"width="100px"/>');
         } else {
           console.log('Cover Image Not Available');
         }
           console.log("--------------------------");
-          // var creatorz = issues[i].creators;
-          // console.log(creatorz);
-          // if (creatorz.items[0]) {
-          //   console.log(creatorz.items[0].name+", "+creatorz.items[0].role);
-          //   // console.log(creatorz.);
-          // } else {
-          //   console.log('writer unknown');
-          // }
         }
       }
 
