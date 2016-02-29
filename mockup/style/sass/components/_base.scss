@@ -32,7 +32,7 @@ width: 562px;
 margin: 50px auto;
 }
 
-.age-results, .search, .help, .about, .pull-list {
+.age, .search, .help, .about, .pull-list {
 @extend %whiteBox;
 }
 
@@ -45,7 +45,7 @@ form {
   margin: 0 auto;
 }
 
-.about, .help, .pull-list, .age-results {
+.about, .help, .pull-list, .age {
   display: none;
 }
 
@@ -89,7 +89,7 @@ form {
   display: none;
 }
 
-.age-results footer {
+.age footer {
   background-color: white;
   text-align: center;
   clear: both;
@@ -100,7 +100,6 @@ form {
 footer {
   margin-top: 200px;
   padding-top: 20px;
-  // background-color: $marvelRed;
   height: 60px;
   color: white;
   text-align: center;

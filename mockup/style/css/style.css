@@ -11,7 +11,7 @@ header img {
   width: 200px;
   margin: -7px 7px; }
 
-.age-results, .search, .help, .about, .pull-list {
+.age, .search, .help, .about, .pull-list {
   width: 800px;
   margin: 15px auto;
   padding: 15px;
@@ -29,7 +29,7 @@ form {
   width: 340px;
   margin: 0 auto; }
 
-.about, .help, .pull-list, .age-results {
+.about, .help, .pull-list, .age {
   display: none; }
 
 .issue {
@@ -65,7 +65,7 @@ form {
 .issue .unpull-button {
   display: none; }
 
-.age-results footer {
+.age footer {
   background-color: white;
   text-align: center;
   clear: both;
@@ -109,6 +109,14 @@ nav a {
   nav a:last-child {
     margin-right: 0; }
 
+.about a, .help a, .pull-list a {
+  color: #e82126;
+  font-weight: bolder;
+  text-decoration: none; }
+
+.about a:hover, .help a:hover, .pull-list a:hover {
+  text-decoration: underline; }
+
 .search h4 {
   margin-bottom: 20px; }
 
@@ -118,7 +126,11 @@ h2 {
 h4 {
   margin: 5px 0; }
 
-.age-results footer a {
+h5 {
+  display: none;
+  margin: 0 10px; }
+
+.age footer a {
   font-size: 1.5em;
   font-family: 'Bangers';
   color: black;
@@ -158,3 +170,6 @@ select {
   font-size: 1.5em;
   font-family: 'Bangers';
   text-decoration: none; }
+
+.label {
+  cursor: pointer; }

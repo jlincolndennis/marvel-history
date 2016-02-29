@@ -1,6 +1,6 @@
 $(function () {
   console.log("Let's Do This!");
-  
+
   var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
   var today = new Date();
@@ -42,7 +42,7 @@ $(function () {
   $('#fake-search-button').on('click', function (event){
     event.preventDefault();
     $('.about, .help, .pull-list').hide();
-    $('.age-results').show();
+    $('.age').show();
   })
 
   $('.pull-button').on('click', function () {
@@ -53,6 +53,22 @@ $(function () {
   $('.unpull-button').on('click', function () {
     $(this).hide()
     $(this).prev('.pull-button').show()
+  })
+
+  $('.hide').on('click', function(event){
+    event.preventDefault();
+    $(this).parent().hide();
+  })
+
+  $('.label').on('mouseenter', function(){
+    $(this).parent().children('h5').css('display', 'inline-block');
+  })
+
+  $('.label').on('mouseleave', function(){
+    $(this).parent().children('h5').hide();
+  })
+  $('.label').on('click', function(){
+    $(this).parent().children('.results').toggle();
   })
 
 })

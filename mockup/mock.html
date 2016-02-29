@@ -23,15 +23,41 @@
 
 
 <div class="about">
-  This is where the About info will go!
+  <h2>About</h2>
+  <p>Marvel comics has opened up a series of APIs to their complete publishing history database. Providing this data to comics fans is very exciting, but with so much data available, it can be hard to find interesting information if you are not looking for something specific.</p>
+
+  <p><strong>This Week In Marvel History</strong> is a web app that will show you notable Marvel titles released historically corresponding to a specific date.</p>
+
+  <p>What constitues a 'notable' title?</p>
+    <ul>
+    <li>First Issues (i.e. 'Amazing Spider-Man  #1')</li>
+    <li>'Event' or 'Crossover' issues (i.e. 'Avengers vs X-Men')</li>
+    <li>First Appearances (i.e. 'Incredible Hulk vol 1, #180', first appearance of the character Wolverine)</li>
+  </ul>
+  <p>In the event that no notable titles were released in the selected week, you'll see 3-5 random titles released during the week from a variety of years.</p>
+
+  <a class='hide' href="#">Close</a>
 </div>
 
 <div class="help">
-  This is where the Help info will go!
+  <h2>Help</h2>
+  <p>Use the dropdown list below to select a date and view Marvel titles released on that week throught history.</p>
+  <p>Titles are sorted by "Age" as follows:</p>
+  <ul>
+    <li><a href='https://en.wikipedia.org/wiki/Modern_Age_of_Comic_Books' target='_blank'>Modern Age:</a> 1986 - Present</li>
+    <li><a href="https://en.wikipedia.org/wiki/Bronze_Age_of_Comic_Books" target='_blank'>Bronze Age:</a> 1970 - 1985</li>
+    <li><a href='https://en.wikipedia.org/wiki/Silver_Age_of_Comic_Books' target='_blank'>Silver Age:</a> 1956 - 1970</li>
+    <li><a href='https://en.wikipedia.org/wiki/Golden_Age_of_Comic_Books' target='_blank'>Golden Age:</a> 1939 - 1955</li>
+</ul>
+<h3>Pull List</h3>
+<p>If you see an interesting title you'd like to save and investigate later, click "<strong>Add To Pull List!</strong>".</p> <p>Click the "<strong>Pull List!</strong>" button above to see all the titles you've saved.</p>
+<a class='hide' href="#">Close</a>
 </div>
 
 <div class="pull-list">
-  This is where the pull list will go!
+  <h2>My Pull List</h2>
+  <p>Click the '<strong>Add To Pull List!</strong>' button on any issue to save it here for later!</p>
+  <a class='hide' href="#">Close</a>
 </div>
 
 <div class="search">
@@ -44,8 +70,11 @@
   </form>
 </div>
 
-<div class="age-results">
+<div class="modern age">
   <h4 class='label'>Modern Age: 1985 - Present</h4>
+  <h5 class='collapse'>&lt;&lt; Click To Show/Hide Results</h5>
+
+  <div class="results">
   <div class='issue'>
     <div class='cover'>
       <img src="images/cover05.jpg" alt="">
@@ -78,12 +107,13 @@
     <h4 class='unpull-button'>Remove fom Pull List!</h4>
   </div>
   <footer><a href="#">Back To Top!</a></footer>
-
+  </div>
 </div>
 
-<div class="age-results">
-  <h4 class='label'>Bronze Age: 1970 - 1985:</h4>
-
+<div class="bronze age">
+  <h4 class='label'>Bronze Age: 1970 - 1985</h4>
+  <h5 class='collapse'>&lt;&lt; Click To Show/Hide Results</h5>
+  <div class="results">
   <div class='issue'>
     <div class='cover'>
       <img src="images/cover01.jpg" alt="">
@@ -116,12 +146,21 @@
     <h4 class='unpull-button'>Remove fom Pull List!</h4>
   </div>
   <footer><a href="#">Back To Top!</a></footer>
+  </div>
 </div>
 
+<div class='silver age'>
+  <h4 class='label'>Silver Age: 1956-1970</h4>
+  <h5 class='collapse'>&lt;&lt; Click To Show/Hide Results</h5>
+  <div class="results">
+  <h3>No results</h3>
+  </div>
+</div>
 
-<div class="age-results">
-  <h4 class='label'>Golden Age: 1930 - 1955:</h4>
-
+<div class="golden age">
+  <h4 class='label'>Golden Age: 1930 - 1955</h4>
+  <h5 class='collapse'>&lt;&lt; Click To Show/Hide Results</h5>
+  <div class="results">
   <div class='issue'>
     <div class='cover'>
       <img src="images/cover03.jpg" alt="">
@@ -139,6 +178,7 @@
   </div>
 
   <footer><a href="#">Back To Top!</a></footer>
+  </div>
 </div>
 
 <script src="app.js"></script>

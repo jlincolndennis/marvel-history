@@ -23,7 +23,6 @@ nav a {
   @extend %yellowBox;
   margin-bottom: 0;
   margin-right: 15px;
-  // margin-left: 5px;
   text-decoration: none;
   color: black;
 
@@ -35,6 +34,18 @@ nav a {
   &:last-child {
     margin-right: 0;
   }
+}
+
+.about, .help, .pull-list,  {
+  a {
+    color: $marvelRed;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
 }
 
 .search h4 {
@@ -49,11 +60,18 @@ h4 {
   margin: 5px 0;
 }
 
+h5 {
+  display: none;
+  margin: 0 10px;
+}
+
+
+
 .label, .pull-button, .unpull-button{
   @extend %yellowBox;
 }
 
-.age-results footer {
+.age footer {
   a {
     font-size: 1.5em;
     font-family: 'Bangers';
