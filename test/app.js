@@ -106,27 +106,64 @@ $(function() {
     var privateKey = "8b4c043b0bdca8eb69f8896595cd3b9ee9bf6673"
     var publicKey = "ccb933046a395a5a0acc8f00cfb1d821"
 
-    var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&dateRange=1983-' + startDate + '%2C%201983-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate&apikey=' + publicKey;
+    //Golden Age Call
+    function goldenCall () {
+      var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&dateRange=1939-' + startDate + '%2C%201955-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate&apikey=' + publicKey;
 
-    var timeStamp = new Date().getTime();
-    var hash = CryptoJS.MD5(timeStamp + privateKey + publicKey);
+      var timeStamp = new Date().getTime();
+      var hash = CryptoJS.MD5(timeStamp + privateKey + publicKey);
 
-    url += "&ts=" + timeStamp + "&hash=" + hash;
-    console.log("url " + url);
+      url += "&ts=" + timeStamp + "&hash=" + hash;
+      console.log("Golden Call url " + url);
 
-    $.get(url, function(response) {
-      var titles = response.data.results
-      console.log('success!');
-      console.log(response);
-      console.log(titles);
-      printToHtml(titles);
-    })
+      $.get(url, function(response) {
+        var issues = response.data.results
+        console.log('success!');
+        console.log(response);
+        console.log(issues);
+        logInfo(issues);
+        // buildInfo(issues);
+      })
 
-    function printToHtml(titles) {
-      for (var i = 0; i < titles.length; i++) {
-      $('body').append('<h1>' + titles[i].title + '</h1><p>' + titles[i].description + '</p>')
+      function  logInfo (issues) {
+        for (var i = 0; i < issues.length; i++) {
+          console.log("Title: "+issues[i].title);
+          var pubDate = issues[i].dates[0].date;
+          var pubYear = pubDate.substr(0, 4);
+          console.log("Released: "+pubYear);
+          var plotDescription = issues[i].description;
+          if (plotDescription !== null) {
+            console.log("Summary:"+plotDescription);
+          } else {
+            console.log("Summary: Filler Text!");
+          }
+          if (issues[i].images[0]){
+          console.log("Cover Image: "+issues[i].images[0].path+"."+issues[i].images[0].extension);
+        } else {
+          console.log('Cover Image Not Available');
+        }
+          console.log("--------------------------");
+          // var creatorz = issues[i].creators;
+          // console.log(creatorz);
+          // if (creatorz.items[0]) {
+          //   console.log(creatorz.items[0].name+", "+creatorz.items[0].role);
+          //   // console.log(creatorz.);
+          // } else {
+          //   console.log('writer unknown');
+          // }
+        }
       }
-    }
 
+      function buildInfo(issues) {
+        for (var i = 0; i < issues.length; i++) {
+          $('body').append('<h1>'+issues[i].title+'</h1>');
+          $('body').append('<h2></h2>');
+          $('body').append('<h3>'+issues[i].description+'</h3>');
+
+        }
+      }
+
+    }
+    goldenCall();
   })
 })
