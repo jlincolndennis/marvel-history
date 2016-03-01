@@ -1,0 +1,106 @@
+$marvelRed: rgb(232,	33,	38);
+
+body {
+  background-color: rgb(75, 76, 78);
+}
+
+header {
+  background-color: $marvelRed;
+  text-align: center;
+  height: 100px;
+  box-shadow:
+      0 1px 1px rgba(0,0,0,0.15), /* The top layer shadow */
+      0 10px 0 -5px rgb(237, 231, 231), /* The second layer */
+      0 10px 1px -4px rgba(0,0,0,0.15), /* The second layer shadow */
+}
+
+header img {
+  width: 200px;
+  margin: -7px 7px;
+}
+
+%whiteBox {
+  width: 800px;
+  margin: 15px auto;
+  padding: 15px;
+  background-color: white;
+  border: 3px solid black;
+}
+
+nav {
+width: 562px;
+margin: 50px auto;
+}
+
+.age, .search, .help, .about, .pull-list {
+@extend %whiteBox;
+}
+
+.search {
+  text-align: center;
+}
+
+form {
+  width: 340px;
+  margin: 0 auto;
+}
+
+.about, .help, .pull-list, .age {
+  display: none;
+}
+
+.issue {
+  clear:both;
+  margin: 25px 0;
+  height: auto;
+  overflow: auto;
+  border-bottom: 1px solid black;
+}
+
+.cover {
+  float: left;
+  margin-bottom: 30px;
+  img {
+    width: 175px;
+    height: auto;
+    margin: 10px;
+    border: 1px solid black;
+  }
+}
+.details {
+  float: left;
+  margin: 10px;
+  width: 500px;
+  h2 {
+    margin: 0 0 5px;
+  }
+  h3 {
+    margin: 0 0 20px;
+  }
+}
+
+.pull-button, .unpull-button {
+  margin-left: 340px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.issue .unpull-button {
+  display: none;
+}
+
+.age footer {
+  background-color: white;
+  text-align: center;
+  clear: both;
+  padding: 0;
+  margin: 0;
+}
+
+footer {
+  margin-top: 200px;
+  padding-top: 20px;
+  height: 60px;
+  color: white;
+  text-align: center;
+}

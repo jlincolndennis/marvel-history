@@ -1,0 +1,85 @@
+h1 {
+  font-family: 'Bangers';
+  color: white;
+  font-weight: normal;
+  font-size: 3.5em;
+  display: inline-block;
+  margin: 15px;
+  height: auto;
+}
+
+%yellowBox {
+  margin-top: 0;
+  padding: 10px;
+  background: radial-gradient(white, rgb(250,	247,	153));
+  display: inline-block;
+  border: 2px solid black;
+  font-weight: lighter;
+  font-size: 1.5em;
+  font-family: 'Bangers'
+}
+
+nav a {
+  @extend %yellowBox;
+  margin-bottom: 0;
+  margin-right: 15px;
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    color: rgb(105, 106, 108);
+    border: 2px solid rgb(105, 106, 108);
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.about, .help, .pull-list,  {
+  a {
+    color: $marvelRed;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+}
+
+.search h4 {
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h4 {
+  margin: 5px 0;
+}
+
+h5 {
+  display: none;
+  margin: 0 10px;
+}
+
+
+
+.label, .pull-button, .unpull-button{
+  @extend %yellowBox;
+}
+
+.age footer {
+  a {
+    font-size: 1.5em;
+    font-family: 'Bangers';
+    color: black;
+    text-decoration: none;
+  }
+}
+
+footer a {
+  color: white;
+}
