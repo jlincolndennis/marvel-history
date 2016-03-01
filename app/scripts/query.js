@@ -45,15 +45,13 @@ $(function() {
   $(month.children()[thisMonth]).attr('selected', true);
 
 
-
   // On Form Submit
   $("#history-date").on("submit", function(event) {
     event.preventDefault();
     $('.about, .help, .pull-list').hide();
     $('.container').empty();
-    $('.container').append('<div class="age"><h4 class="label">Modern Age: 1986 - Now!</h4></h4><h4 class="label tally"><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="modern results"></div><footer><a href="#">Back To Top!</a></footer></div><div class="age"><h4 class="label">Bronze Age: 1971 - 1985</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="bronze results"></div><footer><a href="#">Back To Top!</a></footer></div><div class="age"><h4 class="label">Silver Age: 1956 - 1970</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="silver results"></div><footer><a href="#">Back To Top!</a></footer></div><div class="age"><h4 class="label">Golden Age: 1930 - 1955</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="golden results"></div><footer><a href="#">Back To Top!</a></footer></div>)');
+    $('.container').append('<div class="age"><h4 class="label">Modern Age: 1986 - Now!</h4><h4 class="label tally" id="modern-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="modern results"></div></div><div class="age"><h4 class="label">Bronze Age: 1971 - 1985</h4><h4 id ="bronze-tally" class="label tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="bronze results"></div></div><div class="age"><h4 class="label">Silver Age: 1956 - 1970</h4><h4 class="label tally" id="silver-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="silver results"></div></div><div class="age"><h4 class="label">Golden Age: 1930 - 1955</h4><h4 class="label tally" id="golden-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="golden results"></div></div>)');
     $('.age').show();
-
 
     selectedMonth = +$('#month option:selected').attr('value');
     selectedDate = +$('#day option:selected').attr('value');
@@ -199,18 +197,18 @@ $(function() {
           var issueTitle = issues[i].title;
           var imageArray = issues[i].images
 
-          console.log(issueTitle+": "+imageArray);
-          var imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
-          if (issues[i].images === undefined) {
-            imagePath = "https://www.fillmurray.com/200/300"
-          }
-          console.log(issueTitle+"- PATH: "+imagePath);
+          // console.log(issueTitle+": "+imageArray);
+          // var imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
+          // if (issues[i].images === undefined) {
+          //   imagePath = "https://www.fillmurray.com/200/300"
+          // }
+          // console.log(issueTitle+"- PATH: "+imagePath);
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
             var plotDescription = issues[i].description;
             if (plotDescription === null) {
               plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Probably some punching? Bad guys doing bad things, and only our Heroes can stop them! That sort of thing...";
             }
-            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src="+imagePath+"></div><div class='details'><h2 class='issue-title'>"+issues[i].title+"</h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><h4 class='unpull-button'>Remove fom Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p></div></article>");
+            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src='"+issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension+"'></div><div class='details'><h2 class='issue-title'>"+issues[i].title+"</h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><h4 class='unpull-button'>Remove fom Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a></div></article>");
 
             // Sort Modern Age Issues
             var modernIssues = $('.modern .issue');
@@ -218,11 +216,39 @@ $(function() {
             return $(high).data("year") - $(low).data("year")
             });
             $('.modern').html(modernIssues);
-            var allResults = $('article').length;
-            console.log("LOOK AT ME: "+allResults);
-            $('.tally').html(allResults+" Results!");
 
 
+            // Generage Result Boxes
+            var modernResults = $('.modern article').length;
+            if (modernResults === 1) {
+            $('#modern-tally').html(modernResults+ "Result!")
+          } else {
+            $('#modern-tally').html(modernResults+" Results!");
+          }
+          if (modernResults === 0) {
+            $(".modern").hide()
+          }
+
+            var bronzeResults = $('.bronze article').length;
+            if (bronzeResults === 1){
+              $('#bronze-tally').html(bronzeResults+" Result!");
+              } else {
+            $('#bronze-tally').html(bronzeResults+" Results!");
+            }
+
+            var silverResults = $('.silver article').length;
+            if (silverResults === 1) {
+              $('#silver-tally').html(silverResults+" Result!")
+            } else {
+            $('#silver-tally').html(silverResults+" Results!");
+          }
+
+            var goldenResults = $('.golden article').length;
+            if (goldenResults === 1){
+                $('#golden-tally').html(goldenResults+" Result!");
+              } else {
+            $('#golden-tally').html(goldenResults+" Results!");
+          }
           }
         }
       }
@@ -248,12 +274,9 @@ $(function() {
   }
     modernCall();
 
-
-
-
-    // marvelCall(bronzeLow, bronzeHigh, "bronze");
-    // marvelCall(silverLow, silverHigh, "silver");
-    // marvelCall(goldenLow, goldenHigh, "golden");
+    marvelCall(bronzeLow, bronzeHigh, "bronze");
+    marvelCall(silverLow, silverHigh, "silver");
+    marvelCall(goldenLow, goldenHigh, "golden");
 
     // // Sort Modern Age Results by Year
     // console.log($('.modern .issue'));
