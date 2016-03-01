@@ -126,6 +126,9 @@ h5 {
   display: none;
   margin: 0 10px; }
 
+.tally {
+  margin-left: 20px; }
+
 .pull-button, .unpull-button {
   cursor: pointer; }
 

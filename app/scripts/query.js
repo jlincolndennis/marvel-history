@@ -44,11 +44,17 @@ $(function() {
 
   $(month.children()[thisMonth]).attr('selected', true);
 
+
+
   // On Form Submit
   $("#history-date").on("submit", function(event) {
     event.preventDefault();
     $('.about, .help, .pull-list').hide();
+    $('.container').empty();
+    $('.container').append('<div class="age"><h4 class="label">Modern Age: 1986 - Now!</h4></h4><h4 class="label tally"><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="modern results"></div><footer><a href="#">Back To Top!</a></footer></div><div class="age"><h4 class="label">Bronze Age: 1971 - 1985</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="bronze results"></div><footer><a href="#">Back To Top!</a></footer></div><div class="age"><h4 class="label">Silver Age: 1956 - 1970</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="silver results"></div><footer><a href="#">Back To Top!</a></footer></div><div class="age"><h4 class="label">Golden Age: 1930 - 1955</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="golden results"></div><footer><a href="#">Back To Top!</a></footer></div>)');
     $('.age').show();
+
+
     selectedMonth = +$('#month option:selected').attr('value');
     selectedDate = +$('#day option:selected').attr('value');
 
@@ -166,8 +172,8 @@ $(function() {
     var modernPLow = '2016'
     var modernPHigh = "2016"
 
-    function marvelCall (low, high, age) {
 
+    function marvelCall (low, high, age) {
       var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate&limit=100&apikey=' + publicKey;
 
       var timeStamp = new Date().getTime();
@@ -176,40 +182,53 @@ $(function() {
       url += "&ts=" + timeStamp + "&hash=" + hash;
 
       $.get(url, function(response) {
-
         var issues = response.data.results
-        console.log('success!');
-        console.log(response);
+        // console.log(response);
         console.log(response.code);
         console.log(response.data.count);
         buildIssue(issues);
       })
 
       function  buildIssue (issues) {
-
         for (var i = 0; i < issues.length; i++) {
           var pubCode = issues[i].dates[0].date;
           var pubYear = pubCode.substr(0, 4);
           var pubDate = pubCode.substr(5, 5);
+          var textMonth = monthNames[+(pubDate.substr(0,2)-1)];
+          var textDay = pubDate.substr(3, 2);
+          var issueTitle = issues[i].title;
+          var imageArray = issues[i].images
 
-          var textMonth = monthNames[+(pubDate.substr(0,2)-1)]
-
-          var textDay = pubDate.substr(3, 2)
+          console.log(issueTitle+": "+imageArray);
+          var imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
+          if (issues[i].images === undefined) {
+            imagePath = "https://www.fillmurray.com/200/300"
+          }
+          console.log(issueTitle+"- PATH: "+imagePath);
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
-
-            console.log(issues[i].title);
-            console.log(issues[i].id);
             var plotDescription = issues[i].description;
             if (plotDescription === null) {
               plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Probably some punching? Bad guys doing bad things, and only our Heroes can stop them! That sort of thing...";
             }
-            $("."+age).append("<div class='issue' id='"+issues[i].id+"'><div class='cover'><img src="+issues[i].images[0].path+"/portrait_incredible."+issues[i].images[0].extension+"></div><div class='details'><h2 class='issue-title'>"+issues[i].title+"</h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+"</h3><h4 class='pull-button'>Add to Pull List!</h4><h4 class='unpull-button'>Remove fom Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p></div></div>");
+            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src="+imagePath+"></div><div class='details'><h2 class='issue-title'>"+issues[i].title+"</h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><h4 class='unpull-button'>Remove fom Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p></div></article>");
+
+            // Sort Modern Age Issues
+            var modernIssues = $('.modern .issue');
+            modernIssues.sort(function(low, high) {
+            return $(high).data("year") - $(low).data("year")
+            });
+            $('.modern').html(modernIssues);
+            var allResults = $('article').length;
+            console.log("LOOK AT ME: "+allResults);
+            $('.tally').html(allResults+" Results!");
+
 
           }
         }
       }
 
     }
+    function modernCall (){
     marvelCall(modernPLow, modernPHigh, "modern");
     marvelCall(modernOLow, modernOHigh, "modern");
     marvelCall(modernNLow, modernNHigh, "modern");
@@ -226,20 +245,27 @@ $(function() {
     marvelCall(modernCLow, modernCHigh, "modern");
     marvelCall(modernBLow, modernBHigh, "modern");
     marvelCall(modernALow, modernAHigh, "modern");
-    marvelCall(bronzeLow, bronzeHigh, "bronze");
-    marvelCall(silverLow, silverHigh, "silver");
-    marvelCall(goldenLow, goldenHigh, "golden");
+  }
+    modernCall();
+
+
+
+
+    // marvelCall(bronzeLow, bronzeHigh, "bronze");
+    // marvelCall(silverLow, silverHigh, "silver");
+    // marvelCall(goldenLow, goldenHigh, "golden");
+
+    // // Sort Modern Age Results by Year
+    // console.log($('.modern .issue'));
+    // var modernIssues = $('.modern .issue')
+    // modernIssues.sort(function(low, high) {
+    // return $(low).data("year") - $(high).data("year")
+    // });
+    // $(".modern").html(modernIssues);
+
 
   })
-  // Pull List Buttons
-  $('.pull-button').on('click', function () {
-    console.log("YOU CLICKED, DAWG");
-    $(this).hide()
-    $(this).next('.unpull-button').css('display', 'inline-block')
-  })
 
-  $('.unpull-button').on('click', function () {
-    $(this).hide()
-    $(this).prev('.pull-button').show()
-  })
+
+
 })

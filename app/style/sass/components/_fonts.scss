@@ -69,6 +69,10 @@ h5 {
   @extend %yellowBox;
 }
 
+.tally {
+  margin-left: 20px;
+}
+
 .pull-button, .unpull-button {
   // float: left;
   cursor: pointer;

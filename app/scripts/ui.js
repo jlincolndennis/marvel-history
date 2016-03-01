@@ -36,6 +36,19 @@ $(function () {
   });
 
   $('#pull-list-button').on('click', function (event) {
+    // Sort Modern Age Results by Year
+
+
+    // $('.modern').empty();
+    // Manual Modern Sort
+    // var modernIssues = $('.modern .issue')
+    // console.log(modernIssues);
+    // modernIssues.sort(function(low, high) {
+    // return $(high).data("year") - $(low).data("year")
+    // });
+    // console.log(modernIssues);
+    // $('.modern').html(modernIssues)
+
     event.preventDefault();
     $('.pull-list').toggle();
     $('.help, .about').hide();
@@ -47,22 +60,41 @@ $(function () {
   })
 
   // Fake Search Button
-  $('#fake-search-button').on('click', function (event){
-    event.preventDefault();
-    $('.about, .help, .pull-list').hide();
-    $('.age').show();
+  // $('#fake-search-button').on('click', function (event){
+  //   event.preventDefault();
+  //   $('.about, .help, .pull-list').hide();
+  //   $('.age').show();
+  // })
+
+  $('.container').on('mouseenter', function(event) {
+    // Toggle Result Panes
+    $('.tally').on('mouseenter', function() {
+      $(this).parent().children('h5').css('display', 'inline-block');
+    })
+    $('.tally').on('mouseleave', function() {
+      $(this).parent().children('h5').hide();
+    })
   })
 
-  // Toggle Result Panes
-  $('.label').on('mouseenter', function(){
-    $(this).parent().children('h5').css('display', 'inline-block');
-  })
 
-  $('.label').on('mouseleave', function(){
-    $(this).parent().children('h5').hide();
-  })
-  $('.label').on('click', function(){
-    $(this).parent().children('.results').toggle();
+  $('.container').on('click', function (event) {
+    var targ = event.target;
+    var targClass = ($(targ).attr('class'))
+    console.log(targClass);
+    if (targClass ==='pull-button') {
+      console.log("YOU CLICKED, DAWG");
+      $(targ).hide()
+      $(targ).next('.unpull-button').css('display', 'inline-block')
+    }
+
+    if (targClass === 'unpull-button') {
+      $(targ).hide()
+      $(targ).prev('.pull-button').show()
+    }
+
+    if (targClass === 'label tally') {
+        $(targ).parent().children('.results, footer').toggle();
+    }
   })
 
 
