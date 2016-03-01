@@ -47,6 +47,8 @@ $(function() {
   // On Form Submit
   $("#history-date").on("submit", function(event) {
     event.preventDefault();
+    $('.about, .help, .pull-list').hide();
+    $('.age').show();
     selectedMonth = +$('#month option:selected').attr('value');
     selectedDate = +$('#day option:selected').attr('value');
 
@@ -164,8 +166,9 @@ $(function() {
     var modernPLow = '2016'
     var modernPHigh = "2016"
 
-    function marvelCall (low, high) {
-      var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate&limit=100&apikey=' + publicKey;
+    function marvelCall (low, high, age) {
+
+      var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate&limit=100&apikey=' + publicKey;
 
       var timeStamp = new Date().getTime();
       var hash = CryptoJS.MD5(timeStamp + privateKey + publicKey);
@@ -173,68 +176,70 @@ $(function() {
       url += "&ts=" + timeStamp + "&hash=" + hash;
 
       $.get(url, function(response) {
+
         var issues = response.data.results
         console.log('success!');
         console.log(response);
         console.log(response.code);
         console.log(response.data.count);
-        // console.log(issues);
-        logInfo(issues);
+        buildIssue(issues);
       })
 
-      function  logInfo (issues) {
+      function  buildIssue (issues) {
+
         for (var i = 0; i < issues.length; i++) {
-          console.log("**************************");
           var pubCode = issues[i].dates[0].date;
           var pubYear = pubCode.substr(0, 4);
           var pubDate = pubCode.substr(5, 5);
+
+          var textMonth = monthNames[+(pubDate.substr(0,2)-1)]
+
+          var textDay = pubDate.substr(3, 2)
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
-            console.log("SHOW: "+ issues[i].title);
-            if (issues[i].images[0]){
-            $('body').append('<img src="'+issues[i].images[0].path+"."+issues[i].images[0].extension+'"width="100px"/>')
+
+            console.log(issues[i].title);
+            console.log(issues[i].id);
+            var plotDescription = issues[i].description;
+            if (plotDescription === null) {
+              plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Probably some punching? Bad guys doing bad things, and only our Heroes can stop them! That sort of thing...";
             }
-          } else {
-            console.log("Do NOT Show: "+issues[i].title);
+            $("."+age).append("<div class='issue' id='"+issues[i].id+"'><div class='cover'><img src="+issues[i].images[0].path+"/portrait_incredible."+issues[i].images[0].extension+"></div><div class='details'><h2 class='issue-title'>"+issues[i].title+"</h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+"</h3><h4 class='pull-button'>Add to Pull List!</h4><h4 class='unpull-button'>Remove fom Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p></div></div>");
+
           }
-          console.log("Released Year: "+pubYear);
-          console.log("Released Date: "+pubDate);
-          // console.log("Raw Date Code: "+pubCode);
-          var plotDescription = issues[i].description;
-          if (plotDescription !== null) {
-            console.log("Summary:"+plotDescription);
-          } else {
-            console.log("Summary: Filler Text!");
-          }
-          if (issues[i].images[0]){
-          console.log("Cover Image: "+issues[i].images[0].path+"."+issues[i].images[0].extension);
-    ;
-        } else {
-          console.log('Cover Image Not Available');
-        }
-          console.log("--------------------------");
         }
       }
 
     }
-    marvelCall(goldenLow, goldenHigh);
-    marvelCall(silverLow, silverHigh);
-    marvelCall(bronzeLow, bronzeHigh);
-    marvelCall(modernALow, modernAHigh);
-    marvelCall(modernBLow, modernBHigh);
-    marvelCall(modernCLow, modernCHigh);
-    marvelCall(modernDLow, modernDHigh);
-    marvelCall(modernELow, modernEHigh);
-    marvelCall(modernFLow, modernFHigh);
-    marvelCall(modernGLow, modernGHigh);
-    marvelCall(modernHLow, modernHHigh);
-    marvelCall(modernILow, modernIHigh);
-    marvelCall(modernJLow, modernJHigh);
-    marvelCall(modernKLow, modernKHigh);
-    marvelCall(modernLLow, modernLHigh);
-    marvelCall(modernMLow, modernMHigh);
-    marvelCall(modernNLow, modernNHigh);
-    marvelCall(modernOLow, modernOHigh);
-    marvelCall(modernPLow, modernPHigh);
+    marvelCall(modernPLow, modernPHigh, "modern");
+    marvelCall(modernOLow, modernOHigh, "modern");
+    marvelCall(modernNLow, modernNHigh, "modern");
+    marvelCall(modernMLow, modernMHigh, "modern");
+    marvelCall(modernLLow, modernLHigh, "modern");
+    marvelCall(modernKLow, modernKHigh, "modern");
+    marvelCall(modernJLow, modernJHigh, "modern");
+    marvelCall(modernILow, modernIHigh, "modern");
+    marvelCall(modernHLow, modernHHigh, "modern");
+    marvelCall(modernGLow, modernGHigh, "modern");
+    marvelCall(modernFLow, modernFHigh, "modern");
+    marvelCall(modernELow, modernEHigh, "modern");
+    marvelCall(modernDLow, modernDHigh, "modern");
+    marvelCall(modernCLow, modernCHigh, "modern");
+    marvelCall(modernBLow, modernBHigh, "modern");
+    marvelCall(modernALow, modernAHigh, "modern");
+    marvelCall(bronzeLow, bronzeHigh, "bronze");
+    marvelCall(silverLow, silverHigh, "silver");
+    marvelCall(goldenLow, goldenHigh, "golden");
 
+  })
+  // Pull List Buttons
+  $('.pull-button').on('click', function () {
+    console.log("YOU CLICKED, DAWG");
+    $(this).hide()
+    $(this).next('.unpull-button').css('display', 'inline-block')
+  })
+
+  $('.unpull-button').on('click', function () {
+    $(this).hide()
+    $(this).prev('.pull-button').show()
   })
 })

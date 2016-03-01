@@ -191,7 +191,7 @@ $(function() {
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
             console.log("SHOW: "+ issues[i].title);
             if (issues[i].images[0]){
-            $('body').append('<img src="'+issues[i].images[0].path+"."+issues[i].images[0].extension+'"width="100px"/>')
+            $('body').append('<img src="'+issues[i].images[3].path+"."+issues[i].images[3].extension+'"width="100px"/>')
             }
           } else {
             console.log("Do NOT Show: "+issues[i].title);
@@ -219,22 +219,22 @@ $(function() {
     marvelCall(goldenLow, goldenHigh);
     marvelCall(silverLow, silverHigh);
     marvelCall(bronzeLow, bronzeHigh);
-    marvelCall(modernALow, modernAHigh);
-    marvelCall(modernBLow, modernBHigh);
-    marvelCall(modernCLow, modernCHigh);
-    marvelCall(modernDLow, modernDHigh);
-    marvelCall(modernELow, modernEHigh);
-    marvelCall(modernFLow, modernFHigh);
-    marvelCall(modernGLow, modernGHigh);
-    marvelCall(modernHLow, modernHHigh);
-    marvelCall(modernILow, modernIHigh);
-    marvelCall(modernJLow, modernJHigh);
-    marvelCall(modernKLow, modernKHigh);
-    marvelCall(modernLLow, modernLHigh);
-    marvelCall(modernMLow, modernMHigh);
-    marvelCall(modernNLow, modernNHigh);
-    marvelCall(modernOLow, modernOHigh);
-    marvelCall(modernPLow, modernPHigh);
+    // marvelCall(modernALow, modernAHigh);
+    // marvelCall(modernBLow, modernBHigh);
+    // marvelCall(modernCLow, modernCHigh);
+    // marvelCall(modernDLow, modernDHigh);
+    // marvelCall(modernELow, modernEHigh);
+    // marvelCall(modernFLow, modernFHigh);
+    // marvelCall(modernGLow, modernGHigh);
+    // marvelCall(modernHLow, modernHHigh);
+    // marvelCall(modernILow, modernIHigh);
+    // marvelCall(modernJLow, modernJHigh);
+    // marvelCall(modernKLow, modernKHigh);
+    // marvelCall(modernLLow, modernLHigh);
+    // marvelCall(modernMLow, modernMHigh);
+    // marvelCall(modernNLow, modernNHigh);
+    // marvelCall(modernOLow, modernOHigh);
+    // marvelCall(modernPLow, modernPHigh);
 
   })
 })

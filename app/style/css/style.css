@@ -46,7 +46,8 @@ form {
     width: 175px;
     height: auto;
     margin: 10px;
-    border: 1px solid black; }
+    border: 1px solid black;
+    float: none; }
 
 .details {
   float: left;
@@ -56,11 +57,6 @@ form {
     margin: 0 0 5px; }
   .details h3 {
     margin: 0 0 20px; }
-
-.pull-button, .unpull-button {
-  margin-left: 340px;
-  margin-bottom: 25px;
-  cursor: pointer; }
 
 .issue .unpull-button {
   display: none; }
@@ -129,6 +125,9 @@ h4 {
 h5 {
   display: none;
   margin: 0 10px; }
+
+.pull-button, .unpull-button {
+  cursor: pointer; }
 
 .age footer a {
   font-size: 1.5em;

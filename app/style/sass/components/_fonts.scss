@@ -65,10 +65,13 @@ h5 {
   margin: 0 10px;
 }
 
-
-
 .label, .pull-button, .unpull-button{
   @extend %yellowBox;
+}
+
+.pull-button, .unpull-button {
+  // float: left;
+  cursor: pointer;
 }
 
 .age footer {

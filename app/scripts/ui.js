@@ -53,17 +53,6 @@ $(function () {
     $('.age').show();
   })
 
-  // Pull List Buttons
-  $('.pull-button').on('click', function () {
-    $(this).hide()
-    $(this).next('.unpull-button').css('display', 'inline-block')
-  })
-
-  $('.unpull-button').on('click', function () {
-    $(this).hide()
-    $(this).prev('.pull-button').show()
-  })
-
   // Toggle Result Panes
   $('.label').on('mouseenter', function(){
     $(this).parent().children('h5').css('display', 'inline-block');

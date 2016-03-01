@@ -65,6 +65,7 @@ form {
     height: auto;
     margin: 10px;
     border: 1px solid black;
+    float: none;
   }
 }
 .details {
@@ -79,14 +80,15 @@ form {
   }
 }
 
-.pull-button, .unpull-button {
-  margin-left: 340px;
-  margin-bottom: 25px;
-  cursor: pointer;
-}
+
 
 .issue .unpull-button {
   display: none;
+}
+
+.release-date {
+  // display: inline-block;
+  // float: left;
 }
 
 .age footer {
