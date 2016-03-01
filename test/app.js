@@ -106,9 +106,66 @@ $(function() {
     var privateKey = "8b4c043b0bdca8eb69f8896595cd3b9ee9bf6673"
     var publicKey = "ccb933046a395a5a0acc8f00cfb1d821"
 
-    //Golden Age Call
-    function goldenCall () {
-      var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&dateRange=1939-' + startDate + '%2C%201955-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate&apikey=' + publicKey;
+    //Golden Age Call 1939 1955
+    var goldenLow = "1939"
+    var goldenHigh = "1955"
+    //Silver Age Call 1956 1970
+    var silverLow = "1956"
+    var silverHigh = "1970"
+    //Bronze Age Call 1971 1985
+    var bronzeLow = "1971"
+    var bronzeHigh = "1985"
+    // Modern Age Group A 1986 1995
+    var modernALow = "1986"
+    var modernAHigh = "1995"
+    //Modern Age Group B 1996 1999
+    var modernBLow = "1996"
+    var modernBHigh = "1999"
+    //Modern Age Group C 2000 2002
+    var modernCLow = "2000"
+    var modernCHigh = "2002"
+    //Modern Age Group D 2003 2004
+    var modernDLow = "2003"
+    var modernDHigh = "2004"
+    //Modern Age Group E 2005
+    var modernELow = '2005'
+    var modernEHigh = "2005"
+    //Modern Age Group F 2006
+    var modernFLow = '2006'
+    var modernFHigh = "2006"
+    //Modern Age Group G 2007
+    var modernGLow = '2007'
+    var modernGHigh = "2007"
+    //Modern Age Group H 2008
+    var modernHLow = '2008'
+    var modernHHigh = "2008"
+    //Modern Age Group I 2009
+    var modernILow = '2009'
+    var modernIHigh = "2009"
+    //Modern Age Group J 2010
+    var modernJLow = '2010'
+    var modernJHigh = "2010"
+    //Modern Age Group K 2011
+    var modernKLow = '2011'
+    var modernKHigh = "2011"
+    //Modern Age Group L 2012
+    var modernLLow = '2012'
+    var modernLHigh = "2012"
+    //Modern Age Group M 2013
+    var modernMLow = '2013'
+    var modernMHigh = "2013"
+    //Modern Age Group N 2014
+    var modernNLow = '2014'
+    var modernNHigh = "2014"
+    //Modern Age Group O 2015
+    var modernOLow = '2015'
+    var modernOHigh = "2015"
+    //Modern Age Group P 2016
+    var modernPLow = '2016'
+    var modernPHigh = "2016"
+
+    function marvelCall (low, high) {
+      var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate&limit=100&apikey=' + publicKey;
 
       var timeStamp = new Date().getTime();
       var hash = CryptoJS.MD5(timeStamp + privateKey + publicKey);
@@ -118,7 +175,9 @@ $(function() {
       $.get(url, function(response) {
         var issues = response.data.results
         console.log('success!');
-        // console.log(response);
+        console.log(response);
+        console.log(response.code);
+        console.log(response.data.count);
         // console.log(issues);
         logInfo(issues);
       })
@@ -131,6 +190,9 @@ $(function() {
           var pubDate = pubCode.substr(5, 5);
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
             console.log("SHOW: "+ issues[i].title);
+            if (issues[i].images[0]){
+            $('body').append('<img src="'+issues[i].images[0].path+"."+issues[i].images[0].extension+'"width="100px"/>')
+            }
           } else {
             console.log("Do NOT Show: "+issues[i].title);
           }
@@ -145,7 +207,7 @@ $(function() {
           }
           if (issues[i].images[0]){
           console.log("Cover Image: "+issues[i].images[0].path+"."+issues[i].images[0].extension);
-          $('body').append('<img src="'+issues[i].images[0].path+"."+issues[i].images[0].extension+'"width="100px"/>');
+    ;
         } else {
           console.log('Cover Image Not Available');
         }
@@ -153,16 +215,26 @@ $(function() {
         }
       }
 
-      function buildInfo(issues) {
-        for (var i = 0; i < issues.length; i++) {
-          $('body').append('<h1>'+issues[i].title+'</h1>');
-          $('body').append('<h2></h2>');
-          $('body').append('<h3>'+issues[i].description+'</h3>');
-
-        }
-      }
-
     }
-    goldenCall();
+    marvelCall(goldenLow, goldenHigh);
+    marvelCall(silverLow, silverHigh);
+    marvelCall(bronzeLow, bronzeHigh);
+    marvelCall(modernALow, modernAHigh);
+    marvelCall(modernBLow, modernBHigh);
+    marvelCall(modernCLow, modernCHigh);
+    marvelCall(modernDLow, modernDHigh);
+    marvelCall(modernELow, modernEHigh);
+    marvelCall(modernFLow, modernFHigh);
+    marvelCall(modernGLow, modernGHigh);
+    marvelCall(modernHLow, modernHHigh);
+    marvelCall(modernILow, modernIHigh);
+    marvelCall(modernJLow, modernJHigh);
+    marvelCall(modernKLow, modernKHigh);
+    marvelCall(modernLLow, modernLHigh);
+    marvelCall(modernMLow, modernMHigh);
+    marvelCall(modernNLow, modernNHigh);
+    marvelCall(modernOLow, modernOHigh);
+    marvelCall(modernPLow, modernPHigh);
+
   })
 })
