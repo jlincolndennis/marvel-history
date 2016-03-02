@@ -172,7 +172,7 @@ $(function() {
 
 
     function marvelCall (low, high, age) {
-      var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate&limit=100&apikey=' + publicKey;
+      var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate%2Ctitle&limit=100&apikey=' + publicKey;
 
       var timeStamp = new Date().getTime();
       var hash = CryptoJS.MD5(timeStamp + privateKey + publicKey);
@@ -192,10 +192,13 @@ $(function() {
           var pubCode = issues[i].dates[0].date;
           var pubYear = pubCode.substr(0, 4);
           var pubDate = pubCode.substr(5, 5);
+          var sortDate = pubCode.substr(0, 10)
           var textMonth = monthNames[+(pubDate.substr(0,2)-1)];
           var textDay = pubDate.substr(3, 2);
           var issueTitle = issues[i].title;
           var imageArray = issues[i].images
+          console.log("Sort Date: "+sortDate);
+          console.log(typeof sortDate);
 
           // console.log(issueTitle+": "+imageArray);
           // var imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
