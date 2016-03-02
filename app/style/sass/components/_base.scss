@@ -31,6 +31,15 @@ nav {
 width: 562px;
 margin: 50px auto;
 }
+.pull-slot {
+    display: inline-block;
+    margin-right: 20px;
+    // float: left;
+}
+
+.slot-clear {
+  display: none;
+}
 
 .age, .search, .help, .about, .pull-list, .error {
 @extend %whiteBox;
