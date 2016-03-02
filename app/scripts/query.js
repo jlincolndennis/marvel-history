@@ -218,7 +218,6 @@ $(function() {
           }
           console.log(issueTitle+"- PATH: "+imagePath);
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
-            // console.log(issueTitle+": "+issueUrl);
             var plotDescription = issues[i].description;
             if (plotDescription === null) {
               plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Bad guys doing bad things! Only our Heroes can stop them! Fisticuffs! That sort of thing. Also, the older this particular comic is, the more likely it is to have problematic representations of women, people of color, and LGBTQ folks. So... yeah.";
@@ -232,7 +231,6 @@ $(function() {
             return $(high).data("year") - $(low).data("year")
             });
             $('.modern').html(modernIssues);
-
 
             // Generage Result Tally Boxes
             var modernResults = $('.modern article').length;
