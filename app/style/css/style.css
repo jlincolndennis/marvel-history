@@ -22,6 +22,10 @@ nav {
   width: 562px;
   margin: 50px auto; }
 
+.pull-slot {
+  display: inline-block;
+  margin-right: 20px; }
+
 .search {
   text-align: center; }
 

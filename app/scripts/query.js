@@ -211,7 +211,7 @@ $(function() {
             if (plotDescription === null) {
               plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Probably some punching? Bad guys doing bad things, and only our Heroes can stop them! That sort of thing...";
             }
-            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src='"+issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension+"'></div><div class='details'><h2 class='issue-title'>"+issues[i].title+"</h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><h4 class='unpull-button'>Remove fom Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a></div></article>");
+            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src='"+issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension+"'></div><div class='details'><h2 class='issue-title'>"+issues[i].title+"</h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><h4 class='unpull-button'>Added Title to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a></div></article>");
 
             // Sort Modern Age Issues
             var modernIssues = $('.modern .issue');
@@ -266,20 +266,20 @@ $(function() {
     marvelCall(modernKLow, modernKHigh, "modern");
     marvelCall(modernJLow, modernJHigh, "modern");
     marvelCall(modernILow, modernIHigh, "modern");
-    marvelCall(modernHLow, modernHHigh, "modern");
-    marvelCall(modernGLow, modernGHigh, "modern");
-    marvelCall(modernFLow, modernFHigh, "modern");
-    marvelCall(modernELow, modernEHigh, "modern");
-    marvelCall(modernDLow, modernDHigh, "modern");
-    marvelCall(modernCLow, modernCHigh, "modern");
-    marvelCall(modernBLow, modernBHigh, "modern");
-    marvelCall(modernALow, modernAHigh, "modern");
+    // marvelCall(modernHLow, modernHHigh, "modern");
+    // marvelCall(modernGLow, modernGHigh, "modern");
+    // marvelCall(modernFLow, modernFHigh, "modern");
+    // marvelCall(modernELow, modernEHigh, "modern");
+    // marvelCall(modernDLow, modernDHigh, "modern");
+    // marvelCall(modernCLow, modernCHigh, "modern");
+    // marvelCall(modernBLow, modernBHigh, "modern");
+    // marvelCall(modernALow, modernAHigh, "modern");
   }
     modernCall();
 
-    marvelCall(bronzeLow, bronzeHigh, "bronze");
-    marvelCall(silverLow, silverHigh, "silver");
-    marvelCall(goldenLow, goldenHigh, "golden");
+    // marvelCall(bronzeLow, bronzeHigh, "bronze");
+    // marvelCall(silverLow, silverHigh, "silver");
+    // marvelCall(goldenLow, goldenHigh, "golden");
 
     // // Sort Modern Age Results by Year
     // console.log($('.modern .issue'));
