@@ -208,20 +208,23 @@ $(function() {
           // console.log("Sort Date: "+sortDate);
           // console.log(typeof sortDate);
 
-          // console.log(issueTitle+": "+imageArray);
-          // var imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
-          // if (issues[i].images === undefined) {
-          //   imagePath = "https://www.fillmurray.com/200/300"
-          // }
-          // console.log(issueTitle+"- PATH: "+imagePath);
+          console.log(issueTitle+": "+imageArray);
+          var imagePath
+          if (issues[i].images.length === 0 ){
+            imagePath = "https://www.fillmurray.com/200/300"
+          } else {
+            imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
+
+          }
+          console.log(issueTitle+"- PATH: "+imagePath);
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
             // console.log(issueTitle+": "+issueUrl);
             var plotDescription = issues[i].description;
             if (plotDescription === null) {
-              plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Probably some punching? Bad guys doing bad things, and only our Heroes can stop them! That sort of thing...";
+              plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Bad guys doing bad things! Only our Heroes can stop them! Fisticuffs! That sort of thing. Also, the older this particular comic is, the more likely it is to have problematic representations of women, people of color, and LGBTQ folks. So... yeah.";
             }
 
-            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src='"+issues[i].images[0].path+"/portrait_incredible."+issues[i].images[0].extension+"'></div><div class='details'><h2 class='issue-title'><a href='"+issueUrl+"' target='_blank' class='issue-url'>"+issueTitle+"</a></h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a> | <a class='pull-list-jump' href='#pull'>Jump To Pull List!</a></p></div></article>");
+            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src='"+imagePath+"'></div><div class='details'><h2 class='issue-title'><a href='"+issueUrl+"' target='_blank' class='issue-url'>"+issueTitle+"</a></h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a> | <a class='pull-list-jump' href='#pull'>Jump To Pull List!</a></p></div></article>");
 
             // Sort Modern Age Issues
             var modernIssues = $('.modern .issue');
@@ -273,28 +276,28 @@ $(function() {
 
     }
     function modernCall (){
-    marvelCall(modernPLow, modernPHigh, "modern");
-    marvelCall(modernOLow, modernOHigh, "modern");
-    marvelCall(modernNLow, modernNHigh, "modern");
-    marvelCall(modernMLow, modernMHigh, "modern");
-    marvelCall(modernLLow, modernLHigh, "modern");
-    marvelCall(modernKLow, modernKHigh, "modern");
-    marvelCall(modernJLow, modernJHigh, "modern");
-    marvelCall(modernILow, modernIHigh, "modern");
-    marvelCall(modernHLow, modernHHigh, "modern");
-    marvelCall(modernGLow, modernGHigh, "modern");
-    marvelCall(modernFLow, modernFHigh, "modern");
-    marvelCall(modernELow, modernEHigh, "modern");
-    marvelCall(modernDLow, modernDHigh, "modern");
-    marvelCall(modernCLow, modernCHigh, "modern");
-    marvelCall(modernBLow, modernBHigh, "modern");
-    marvelCall(modernALow, modernAHigh, "modern");
+    // marvelCall(modernPLow, modernPHigh, "modern");
+    // marvelCall(modernOLow, modernOHigh, "modern");
+    // marvelCall(modernNLow, modernNHigh, "modern");
+    // marvelCall(modernMLow, modernMHigh, "modern");
+    // marvelCall(modernLLow, modernLHigh, "modern");
+    // marvelCall(modernKLow, modernKHigh, "modern");
+    // marvelCall(modernJLow, modernJHigh, "modern");
+    // marvelCall(modernILow, modernIHigh, "modern");
+    // marvelCall(modernHLow, modernHHigh, "modern");
+    // marvelCall(modernGLow, modernGHigh, "modern");
+    // marvelCall(modernFLow, modernFHigh, "modern");
+    // marvelCall(modernELow, modernEHigh, "modern");
+    // marvelCall(modernDLow, modernDHigh, "modern");
+    // marvelCall(modernCLow, modernCHigh, "modern");
+    // marvelCall(modernBLow, modernBHigh, "modern");
+    // marvelCall(modernALow, modernAHigh, "modern");
   }
     modernCall();
 
     marvelCall(bronzeLow, bronzeHigh, "bronze");
-    marvelCall(silverLow, silverHigh, "silver");
-    marvelCall(goldenLow, goldenHigh, "golden");
+    // marvelCall(silverLow, silverHigh, "silver");
+    // marvelCall(goldenLow, goldenHigh, "golden");
 
     // // Sort Modern Age Results by Year
     // console.log($('.modern .issue'));
