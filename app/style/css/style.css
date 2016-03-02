@@ -26,6 +26,9 @@ nav {
   display: inline-block;
   margin-right: 20px; }
 
+.slot-clear {
+  display: none; }
+
 .search {
   text-align: center; }
 
@@ -109,12 +112,12 @@ nav a {
   nav a:last-child {
     margin-right: 0; }
 
-.about a, .help a, .pull-list a {
+.about a, .help a, .pull-list a, .details a {
   color: #e82126;
   font-weight: bolder;
   text-decoration: none; }
 
-.about a:hover, .help a:hover, .pull-list a:hover {
+.about a:hover, .help a:hover, .pull-list a:hover, .details a:hover {
   text-decoration: underline; }
 
 .search h4 {
@@ -135,12 +138,6 @@ h5 {
 
 .pull-button, .unpull-button {
   cursor: pointer; }
-
-.age footer a {
-  font-size: 1.5em;
-  font-family: 'Bangers';
-  color: black;
-  text-decoration: none; }
 
 footer a {
   color: white; }

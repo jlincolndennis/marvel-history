@@ -181,9 +181,9 @@ $(function() {
 
       $.get(url, function(response) {
         var issues = response.data.results
-        // console.log(response);
+        console.log(response);
         console.log(response.code);
-        console.log(response.data.count);
+        // console.log(response.data.count);
         buildIssue(issues);
       })
 
@@ -196,9 +196,10 @@ $(function() {
           var textMonth = monthNames[+(pubDate.substr(0,2)-1)];
           var textDay = pubDate.substr(3, 2);
           var issueTitle = issues[i].title;
-          var imageArray = issues[i].images
-          console.log("Sort Date: "+sortDate);
-          console.log(typeof sortDate);
+          var imageArray = issues[i].images;
+          var issueUrl = issues[i].urls[0].url;
+          // console.log("Sort Date: "+sortDate);
+          // console.log(typeof sortDate);
 
           // console.log(issueTitle+": "+imageArray);
           // var imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
@@ -207,11 +208,13 @@ $(function() {
           // }
           // console.log(issueTitle+"- PATH: "+imagePath);
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
+            // console.log(issueTitle+": "+issueUrl);
             var plotDescription = issues[i].description;
             if (plotDescription === null) {
               plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Probably some punching? Bad guys doing bad things, and only our Heroes can stop them! That sort of thing...";
             }
-            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src='"+issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension+"'></div><div class='details'><h2 class='issue-title'>"+issues[i].title+"</h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><h4 class='unpull-button'>Added Title to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a></div></article>");
+
+            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src='"+issues[i].images[0].path+"/portrait_incredible."+issues[i].images[0].extension+"'></div><div class='details'><h2 class='issue-title'><a href='"+issueUrl+"' target='_blank' class='issue-url'>"+issueTitle+"</a></h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a> | <a class='pull-list-jump' href='#pull'>Jump To Pull List!</a></p></div></article>");
 
             // Sort Modern Age Issues
             var modernIssues = $('.modern .issue');
@@ -221,7 +224,7 @@ $(function() {
             $('.modern').html(modernIssues);
 
 
-            // Generage Result Boxes
+            // Generage Result Tally Boxes
             var modernResults = $('.modern article').length;
             if (modernResults === 1) {
             $('#modern-tally').html(modernResults+ "Result!")
@@ -261,11 +264,11 @@ $(function() {
     marvelCall(modernPLow, modernPHigh, "modern");
     marvelCall(modernOLow, modernOHigh, "modern");
     marvelCall(modernNLow, modernNHigh, "modern");
-    marvelCall(modernMLow, modernMHigh, "modern");
-    marvelCall(modernLLow, modernLHigh, "modern");
-    marvelCall(modernKLow, modernKHigh, "modern");
-    marvelCall(modernJLow, modernJHigh, "modern");
-    marvelCall(modernILow, modernIHigh, "modern");
+    // marvelCall(modernMLow, modernMHigh, "modern");
+    // marvelCall(modernLLow, modernLHigh, "modern");
+    // marvelCall(modernKLow, modernKHigh, "modern");
+    // marvelCall(modernJLow, modernJHigh, "modern");
+    // marvelCall(modernILow, modernIHigh, "modern");
     // marvelCall(modernHLow, modernHHigh, "modern");
     // marvelCall(modernGLow, modernGHigh, "modern");
     // marvelCall(modernFLow, modernFHigh, "modern");

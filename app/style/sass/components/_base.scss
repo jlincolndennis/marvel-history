@@ -37,6 +37,10 @@ margin: 50px auto;
     // float: left;
 }
 
+.slot-clear {
+  display: none;
+}
+
 .age, .search, .help, .about, .pull-list {
 @extend %whiteBox;
 }
