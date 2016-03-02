@@ -32,10 +32,22 @@ width: 562px;
 margin: 50px auto;
 }
 
-.age, .search, .help, .about, .pull-list {
+.age, .search, .help, .about, .pull-list, .error {
 @extend %whiteBox;
 }
 
+.error {
+  text-align: center;
+  h1 {
+    color: black;
+    display: block
+  }
+  img {
+    width: 500px;
+    margin: 10px auto;
+    float: none;
+  }
+}
 .search {
   text-align: center;
 }

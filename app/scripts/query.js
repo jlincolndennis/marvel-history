@@ -184,7 +184,11 @@ $(function() {
         // console.log(response);
         console.log(response.code);
         console.log(response.data.count);
+        if (response.code === 200) {
         buildIssue(issues);
+      } else {
+        errorMessage();
+      }
       })
 
       function  buildIssue (issues) {
@@ -252,8 +256,13 @@ $(function() {
               } else {
             $('#golden-tally').html(goldenResults+" Results!");
           }
-          }
-        }
+        } // close if (pubDate....)
+        } // close for loop
+      } // close buildIssue
+
+      function errorMessage () {
+        $('.container').empty();
+        $('.container').append('<div class="error"><h1>Aw, Internet, no.</h1><img src="app/images/errorClint.png"><p>Uh-oh! Looks like something did not go as planned! Please try again!</p><p>If this message appears <strong>every</strong> time you search, that means the limit for daily searches has been reached.</p><p>Sorry! Please come back tomorrow!</p></div> ');  
       }
 
     }

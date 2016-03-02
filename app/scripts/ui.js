@@ -60,11 +60,14 @@ $(function () {
   })
 
   // Fake Search Button
-  // $('#fake-search-button').on('click', function (event){
-  //   event.preventDefault();
-  //   $('.about, .help, .pull-list').hide();
-  //   $('.age').show();
-  // })
+  $('#fake-search-button').on('click', function (event){
+    event.preventDefault();
+    $('.about, .help, .pull-list').hide();
+    console.log('YOU HAVE DONE IT NOW, JACK');
+    $('.age').show();
+    $('.container').empty();
+    $('.container').append('<div class="error"><h1>Aw, Internet, no.</h1><img src="app/images/errorClint.png"><p>Uh-oh! Looks like something did not go as planned! Please try again!</p><p>If this message appears <strong>every</strong> time you search, that means the limit for daily searches has been reached.</p><p>Sorry! Please come back tomorrow!</p></div> ');
+  })
 
   $('.container').on('mouseenter', function(event) {
     // Toggle Result Panes

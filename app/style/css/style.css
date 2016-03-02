@@ -11,7 +11,7 @@ header img {
   width: 200px;
   margin: -7px 7px; }
 
-.age, .search, .help, .about, .pull-list {
+.age, .search, .help, .about, .pull-list, .error {
   width: 800px;
   margin: 15px auto;
   padding: 15px;
@@ -21,6 +21,16 @@ header img {
 nav {
   width: 562px;
   margin: 50px auto; }
+
+.error {
+  text-align: center; }
+  .error h1 {
+    color: black;
+    display: block; }
+  .error img {
+    width: 500px;
+    margin: 10px auto;
+    float: none; }
 
 .search {
   text-align: center; }
