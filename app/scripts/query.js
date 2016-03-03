@@ -204,7 +204,7 @@ $(function() {
           var pubCode = issues[i].dates[0].date;
           var pubYear = pubCode.substr(0, 4);
           var pubDate = pubCode.substr(5, 5);
-          var sortDate = pubCode.substr(0, 10)
+          // var sortDate = pubCode.substr(0, 10)
           var textMonth = monthNames[+(pubDate.substr(0,2)-1)];
           var textDay = pubDate.substr(3, 2);
           var issueTitle = issues[i].title;
@@ -225,7 +225,7 @@ $(function() {
               plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Bad guys doing bad things! Only our Heroes can stop them! Fisticuffs! That sort of thing. Also, the older this particular comic is, the more likely it is to have problematic representations of women, people of color, and LGBTQ folks. So... yeah.";
             }
 
-            $("."+age).append("<article class='issue' data-year='"+pubYear+"' data-title='"+issueTitle+"' id='"+issues[i].id+"'><div class='cover'><img src='"+imagePath+"'></div><div class='details'><h2 class='issue-title'><a href='"+issueUrl+"' target='_blank' class='issue-url'>"+issueTitle+"</a></h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a> | <a class='pull-list-jump' href='#pull'>Jump To Pull List!</a></p></div></article>");
+            $("."+age).append("<article class='issue' data-year='"+pubYear+"' data-title='"+issueTitle+"' id='"+issues[i].id+"'><div class='cover'><img src='"+imagePath+"' alt='Issue Cover'></div><div class='details'><h2 class='issue-title'><a href='"+issueUrl+"' target='_blank' class='issue-url'>"+issueTitle+"</a></h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a> | <a class='pull-list-jump' href='#pull'>Jump To Pull List!</a></p></div></article>");
 
             // Sort Modern Age Issues
             var modernIssues = $('.modern .issue');
