@@ -213,7 +213,7 @@ $(function() {
           var imagePath
 
           if (issues[i].images.length === 0 ){
-            imagePath = "https://www.fillmurray.com/200/300"
+            imagePath = "app/images/coverunavailable.png"
           } else {
             imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
           }
