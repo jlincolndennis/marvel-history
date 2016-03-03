@@ -21,7 +21,6 @@ $(function() {
 
 
   // Generate Option Boxes
-  console.log('Let Us Begin');
   var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   var today = new Date();
@@ -35,39 +34,49 @@ $(function() {
   for (var d = 0; d < 31; d++) {
     day.append($('<option>').attr("value", (d + 1)).text(d + 1));
   };
-
+  // Select Current Date
   $(day.children()[thisDate]).attr('selected', true);
 
   for (var m = 0; m < 12; m++) {
     month.append($('<option>').attr('value', (m + 1)).text(monthNames[m]));
   };
-
+  // Select Current Month
   $(month.children()[thisMonth]).attr('selected', true);
 
 
   // On Form Submit
   $("#history-date").on("submit", function(event) {
     event.preventDefault();
-    $('.about, .help, .pull-list').hide();
-    $('.container').empty();
-    $('.container').append('<div class="age"><h4 class="label">Modern Age: 1986 - Now!</h4><h4 class="label tally" id="modern-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="modern results"></div></div><div class="age"><h4 class="label">Bronze Age: 1971 - 1985</h4><h4 id ="bronze-tally" class="label tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="bronze results"></div></div><div class="age"><h4 class="label">Silver Age: 1956 - 1970</h4><h4 class="label tally" id="silver-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="silver results"></div></div><div class="age"><h4 class="label">Golden Age: 1930 - 1955</h4><h4 class="label tally" id="golden-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="golden results"></div></div>)');
-    $('.age').show();
-
     selectedMonth = +$('#month option:selected').attr('value');
     selectedDate = +$('#day option:selected').attr('value');
 
     // Date Validation
     if (selectedMonth === 2 && selectedDate > 29) {
-      alert("Nice try, buddy. That's not a real date! Please select a date that actually exists!");
       selectedMonth = undefined;
       selectedDate = undefined;
+      alert("Nice try, buddy. That's not a real date! Please select a date that actually exists!");
+      return false;
     };
 
     if ((selectedMonth === 4 || selectedMonth === 6 || selectedMonth === 9 || selectedMonth === 11) && selectedDate > 30) {
       alert("Nice try, buddy. That's not a real date! Please select a date that actually exists!");
       selectedMonth = undefined;
       selectedDate = undefined;
+      return false;
     };
+
+    if (selectedMonth === 12 && selectedDate > 25 ){
+        alert("Selecting a date after Christmas really confuses the gnomes that live in the computer that generate the search results. Please select a different date.")
+        selectedMonth = undefined;
+        selectedDate = undefined;
+        return false;
+    }
+
+    // Generate Issue Template
+    $('.about, .help, .pull-list').hide();
+    $('.container').empty();
+    $('.container').append('<div class="age"><h4 class="label">Modern Age: 1986 - Now!</h4><h4 class="label tally" id="modern-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="modern results"></div></div><div class="age"><h4 class="label">Bronze Age: 1971 - 1985</h4><h4 id ="bronze-tally" class="label tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="bronze results"></div></div><div class="age"><h4 class="label">Silver Age: 1956 - 1970</h4><h4 class="label tally" id="silver-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="silver results"></div></div><div class="age"><h4 class="label">Golden Age: 1930 - 1955</h4><h4 class="label tally" id="golden-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="golden results"></div></div>');
+    $('.age').show();
 
     //  Create date One Week from selected
     var startDate = pad(selectedMonth) + "-" + pad(selectedDate);
@@ -105,8 +114,6 @@ $(function() {
       }
       return (pad(month) + "-" + pad(day));
     }
-    console.log("Start Date is: " + startDate );
-    console.log("End Date is: " + oneWeekLater);
 
     // Call Generation
     var privateKey = "8b4c043b0bdca8eb69f8896595cd3b9ee9bf6673"
@@ -172,6 +179,7 @@ $(function() {
 
 
     function marvelCall (low, high, age) {
+      // Generate call url
       var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate%2Ctitle&limit=100&apikey=' + publicKey;
 
       var timeStamp = new Date().getTime();
@@ -179,23 +187,20 @@ $(function() {
 
       url += "&ts=" + timeStamp + "&hash=" + hash;
 
+      // Call
       $.get(url, function(response) {
         var issues = response.data.results
-        console.log(response);
-        console.log(response.code);
-
-        console.log(response.data.count);
+        // console.log(response.code);
         if (response.code === 200) {
-
-
-        buildIssue(issues);
-      } else {
-        errorMessage();
-      }
+          buildIssue(issues);
+        } else {
+          errorMessage();
+        }
       })
 
       function  buildIssue (issues) {
         for (var i = 0; i < issues.length; i++) {
+
           var pubCode = issues[i].dates[0].date;
           var pubYear = pubCode.substr(0, 4);
           var pubDate = pubCode.substr(5, 5);
@@ -205,29 +210,26 @@ $(function() {
           var issueTitle = issues[i].title;
           var imageArray = issues[i].images;
           var issueUrl = issues[i].urls[0].url;
-          // console.log("Sort Date: "+sortDate);
-          // console.log(typeof sortDate);
-
-          // console.log(issueTitle+": "+imageArray);
           var imagePath
+
           if (issues[i].images.length === 0 ){
             imagePath = "https://www.fillmurray.com/200/300"
           } else {
             imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
-
           }
-          // console.log(issueTitle+"- PATH: "+imagePath);
-          if (pubDate >= startDate && pubDate <= oneWeekLater) {
 
+          if (pubDate >= startDate && pubDate <= oneWeekLater) {
             var plotDescription = issues[i].description;
+
             if (plotDescription === null) {
               plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Bad guys doing bad things! Only our Heroes can stop them! Fisticuffs! That sort of thing. Also, the older this particular comic is, the more likely it is to have problematic representations of women, people of color, and LGBTQ folks. So... yeah.";
             }
 
             $("."+age).append("<article class='issue' data-year='"+pubYear+"' data-title='"+issueTitle+"' id='"+issues[i].id+"'><div class='cover'><img src='"+imagePath+"'></div><div class='details'><h2 class='issue-title'><a href='"+issueUrl+"' target='_blank' class='issue-url'>"+issueTitle+"</a></h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a> | <a class='pull-list-jump' href='#pull'>Jump To Pull List!</a></p></div></article>");
-            console.log($('.modern .issue').find('.issue-title').text());
+
             // Sort Modern Age Issues
             var modernIssues = $('.modern .issue');
+
             modernIssues.sort(function(low, high) {
               var x = $(high).data("year") - $(low).data("year");
              if (x === 0)  {
@@ -235,43 +237,45 @@ $(function() {
               } else {
                 return x
               };
-              // return $(high).data("year") - $(low).data("year");
-
-            // return x === 0 ? $(low).find('.issue-title').text() - $(high).find('.issue-title').text() :  x
             });
+
             $('.modern').html(modernIssues);
 
             // Generage Result Tally Boxes
             var modernResults = $('.modern article').length;
+
             if (modernResults === 1) {
-            $('#modern-tally').html(modernResults+ "Result!")
-          } else {
-            $('#modern-tally').html(modernResults+" Results!");
-          }
-          if (modernResults === 0) {
-            $(".modern").hide()
-          }
+              $('#modern-tally').html(modernResults+ "Result!")
+            } else {
+              $('#modern-tally').html(modernResults+" Results!");
+            }
+            if (modernResults === 0) {
+              $(".modern").hide()
+            }
 
             var bronzeResults = $('.bronze article').length;
+
             if (bronzeResults === 1){
               $('#bronze-tally').html(bronzeResults+" Result!");
-              } else {
-            $('#bronze-tally').html(bronzeResults+" Results!");
+            } else {
+              $('#bronze-tally').html(bronzeResults+" Results!");
             }
 
             var silverResults = $('.silver article').length;
+
             if (silverResults === 1) {
               $('#silver-tally').html(silverResults+" Result!")
             } else {
-            $('#silver-tally').html(silverResults+" Results!");
-          }
+              $('#silver-tally').html(silverResults+" Results!");
+            }
 
             var goldenResults = $('.golden article').length;
+
             if (goldenResults === 1){
-                $('#golden-tally').html(goldenResults+" Result!");
-              } else {
-            $('#golden-tally').html(goldenResults+" Results!");
-          }
+              $('#golden-tally').html(goldenResults+" Result!");
+            } else {
+              $('#golden-tally').html(goldenResults+" Results!");
+            }
         } // close if (pubDate....)
         } // close for loop
       } // close buildIssue
@@ -280,43 +284,30 @@ $(function() {
         $('.container').empty();
         $('.container').append('<div class="error"><h1>Aw, Internet, no.</h1><img src="app/images/errorClint.png"><p>Uh-oh! Looks like something did not go as planned! Please try again!</p><p>If this message appears <strong>every</strong> time you search, that means the limit for daily searches has been reached.</p><p>Sorry! Please come back tomorrow!</p></div> ');
       }
+    } // close marvelCall
 
-    }
     function modernCall (){
-    marvelCall(modernPLow, modernPHigh, "modern");
-    marvelCall(modernOLow, modernOHigh, "modern");
-    marvelCall(modernNLow, modernNHigh, "modern");
-    marvelCall(modernMLow, modernMHigh, "modern");
-    marvelCall(modernLLow, modernLHigh, "modern");
-    marvelCall(modernKLow, modernKHigh, "modern");
-    marvelCall(modernJLow, modernJHigh, "modern");
-    marvelCall(modernILow, modernIHigh, "modern");
-    marvelCall(modernHLow, modernHHigh, "modern");
-    marvelCall(modernGLow, modernGHigh, "modern");
-    marvelCall(modernFLow, modernFHigh, "modern");
-    marvelCall(modernELow, modernEHigh, "modern");
-    marvelCall(modernDLow, modernDHigh, "modern");
-    marvelCall(modernCLow, modernCHigh, "modern");
-    marvelCall(modernBLow, modernBHigh, "modern");
-    marvelCall(modernALow, modernAHigh, "modern");
-  }
+      marvelCall(modernPLow, modernPHigh, "modern");
+      marvelCall(modernOLow, modernOHigh, "modern");
+      marvelCall(modernNLow, modernNHigh, "modern");
+      marvelCall(modernMLow, modernMHigh, "modern");
+      marvelCall(modernLLow, modernLHigh, "modern");
+      marvelCall(modernKLow, modernKHigh, "modern");
+      marvelCall(modernJLow, modernJHigh, "modern");
+      marvelCall(modernILow, modernIHigh, "modern");
+      marvelCall(modernHLow, modernHHigh, "modern");
+      marvelCall(modernGLow, modernGHigh, "modern");
+      marvelCall(modernFLow, modernFHigh, "modern");
+      marvelCall(modernELow, modernEHigh, "modern");
+      marvelCall(modernDLow, modernDHigh, "modern");
+      marvelCall(modernCLow, modernCHigh, "modern");
+      marvelCall(modernBLow, modernBHigh, "modern");
+      marvelCall(modernALow, modernAHigh, "modern");
+    }
     modernCall();
 
     marvelCall(bronzeLow, bronzeHigh, "bronze");
     marvelCall(silverLow, silverHigh, "silver");
     marvelCall(goldenLow, goldenHigh, "golden");
-
-    // // Sort Modern Age Results by Year
-    // console.log($('.modern .issue'));
-    // var modernIssues = $('.modern .issue')
-    // modernIssues.sort(function(low, high) {
-    // return $(low).data("year") - $(high).data("year")
-    // });
-    // $(".modern").html(modernIssues);
-
-
-  })
-
-
-
-})
+  }) // close on form submit
+}) // close document ready

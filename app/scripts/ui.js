@@ -1,6 +1,6 @@
 $(function () {
-  console.log("Let's Do This!");
 
+  //Pull List Initialation
   if (localStorage.book1 === undefined) localStorage.book1 = "Empty!";
   if (localStorage.book2 === undefined) localStorage.book2 = "Empty!";
   if (localStorage.book3 === undefined) localStorage.book3 = "Empty!";
@@ -50,6 +50,7 @@ $(function () {
     $('.about, .pull-list').hide();
   });
 
+  // Pull List UI
   $('#pull-list-button').on('click', function (event) {
     event.preventDefault();
     $('.pull-list').toggle();
@@ -164,16 +165,7 @@ $(function () {
     $(this).parent().hide();
   })
 
-  // Fake Search Button
-  $('#fake-search-button').on('click', function (event){
-    event.preventDefault();
-    $('.about, .help, .pull-list').hide();
-    console.log('YOU HAVE DONE IT NOW, JACK');
-    $('.age').show();
-    $('.container').empty();
-    $('.container').append('<div class="error"><h1>Aw, Internet, no.</h1><img src="app/images/errorClint.png"><p>Uh-oh! Looks like something did not go as planned! Please try again!</p><p>If this message appears <strong>every</strong> time you search, that means the limit for daily searches has been reached.</p><p>Sorry! Please come back tomorrow!</p></div> ');
-  })
-
+  // Listeners on Generated Nodes
   $('.container').on('mouseenter', function(event) {
     // Toggle Result Panes
     $('.tally').on('mouseenter', function() {
@@ -184,7 +176,6 @@ $(function () {
     })
   })
 
-
   $('.container').on('click', function (event) {
     var targ = event.target;
     var targClass = ($(targ).attr('class'))
@@ -193,53 +184,55 @@ $(function () {
 
     // Add Times To Pull List
     if (targClass ==='pull-button') {
-      console.log("YOU CLICKED, DAWG");
-        if (localStorage.book1 === undefined || localStorage.book1 === "Empty!") {
-          localStorage.book1 = targTitle
-          localStorage.url1= targUrl
-          $('#slot01').empty();
-          $('#slot01').append('<h3>Slot 01: <a href="'+localStorage.url1+'" target="_blank">'+localStorage.book1+'</a></h3>');
-          $('#clear-pull-list').show();
-          $('#del01').show();
-          alert("Added Comic to Slot 01!\nClick 'My Pull List!' to edit titles you've pulled.");
-        } else if (localStorage.book2 === undefined || localStorage.book2 === "Empty!") {
-            localStorage.book2 = targTitle;
-            localStorage.url2 = targUrl
-            $('#slot02').empty();
-            $('#slot02').append('<h3>Slot 02: <a href="'+localStorage.url2+'" target="_blank">'+localStorage.book2+'</a></h3>');
-            $('#clear-pull-list').show();
-            $('#del02').show();
-            alert("Added Comic to Slot 02!\nClick 'My Pull List!' to edit titles you've pulled.");
-          }  else if (localStorage.book3 === undefined || localStorage.book3 === "Empty!") {
-              localStorage.book3 = targTitle;
-              localStorage.url3 = targUrl;
-              $('#slot03').empty();
-              $('#slot03').append('<h3>Slot 03: <a href="'+localStorage.url3+'" target="_blank">'+localStorage.book3+'</a></h3>');
-              $('#clear-pull-list').show();
-              $('#del03').show();
-              alert("Added Comic to Slot 03!\nClick 'My Pull List!' to edit titles you've pulled.");
-            } else if (localStorage.book4 === undefined || localStorage.book4 === "Empty!") {
-                localStorage.book4 = targTitle;
-                localStorage.url4 = targUrl;
-                $('#slot04').empty();
-                $('#slot04').append('<h3>Slot 04: <a href="'+localStorage.url4+'" target="_blank">'+localStorage.book4+'</a></h3>');
-                $('#clear-pull-list').show();
-                $('#del04').show();
-                alert("Added Comic to Slot 04!\nClick 'My Pull List!' to edit titles you've pulled.");
-              } else if (localStorage.book5 === undefined || localStorage.book5 === "Empty!") {
-                  localStorage.book5 = targTitle;
-                  localStorage.url5 = targUrl;
-                  $('#slot05').empty();
-                  $('#slot05').append('<h3>Slot 05: <a href="'+localStorage.url5+'" target="_blank">'+localStorage.book5+'</a></h3>');
-                  $('#clear-pull-list').show();
-                  $('#del05').show();
-                  alert("Added Comic to Slot 05!\nClick 'My Pull List!' to edit titles you've pulled.");
-                } else {
-                  alert("All Pull List Slots are full!\nClick 'My Pull List!' to edit titles you've pulled.")
-                }
 
+      if (localStorage.book1 === undefined || localStorage.book1 === "Empty!") {
+        localStorage.book1 = targTitle
+        localStorage.url1= targUrl
+        $('#slot01').empty();
+        $('#slot01').append('<h3>Slot 01: <a href="'+localStorage.url1+'" target="_blank">'+localStorage.book1+'</a></h3>');
+        $('#clear-pull-list').show();
+        $('#del01').show();
+        alert("Added Comic to Slot 01!\nClick 'My Pull List!' to edit titles you've pulled.");
 
+      } else if (localStorage.book2 === undefined || localStorage.book2 === "Empty!") {
+        localStorage.book2 = targTitle;
+        localStorage.url2 = targUrl
+        $('#slot02').empty();
+        $('#slot02').append('<h3>Slot 02: <a href="'+localStorage.url2+'" target="_blank">'+localStorage.book2+'</a></h3>');
+        $('#clear-pull-list').show();
+        $('#del02').show();
+        alert("Added Comic to Slot 02!\nClick 'My Pull List!' to edit titles you've pulled.");
 
+      } else if (localStorage.book3 === undefined || localStorage.book3 === "Empty!") {
+        localStorage.book3 = targTitle;
+        localStorage.url3 = targUrl;
+        $('#slot03').empty();
+        $('#slot03').append('<h3>Slot 03: <a href="'+localStorage.url3+'" target="_blank">'+localStorage.book3+'</a></h3>');
+        $('#clear-pull-list').show();
+        $('#del03').show();
+        alert("Added Comic to Slot 03!\nClick 'My Pull List!' to edit titles you've pulled.");
+
+      } else if (localStorage.book4 === undefined || localStorage.book4 === "Empty!") {
+        localStorage.book4 = targTitle;
+        localStorage.url4 = targUrl;
+        $('#slot04').empty();
+        $('#slot04').append('<h3>Slot 04: <a href="'+localStorage.url4+'" target="_blank">'+localStorage.book4+'</a></h3>');
+        $('#clear-pull-list').show();
+        $('#del04').show();
+        alert("Added Comic to Slot 04!\nClick 'My Pull List!' to edit titles you've pulled.");
+
+      } else if (localStorage.book5 === undefined || localStorage.book5 === "Empty!") {
+        localStorage.book5 = targTitle;
+        localStorage.url5 = targUrl;
+        $('#slot05').empty();
+        $('#slot05').append('<h3>Slot 05: <a href="'+localStorage.url5+'" target="_blank">'+localStorage.book5+'</a></h3>');
+        $('#clear-pull-list').show();
+        $('#del05').show();
+        alert("Added Comic to Slot 05!\nClick 'My Pull List!' to edit titles you've pulled.");
+
+      } else {
+        alert("All Pull List Slots are full!\nClick 'My Pull List!' to edit titles you've pulled.")
+      }
     }
 
     if (targClass === 'pull-list-jump') {
@@ -272,8 +265,9 @@ $(function () {
     }
 
     if (targClass === 'label tally') {
-        $(targ).parent().children('.results, footer').toggle();
+      $(targ).parent().children('.results, footer').toggle();
     }
+
   })
 
 
