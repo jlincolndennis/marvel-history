@@ -31,17 +31,17 @@ nav {
 width: 562px;
 margin: 50px auto;
 }
+
 .pull-slot {
-    display: inline-block;
-    margin-right: 20px;
-    // float: left;
+  display: inline-block;
+  margin-right: 20px;
 }
 
 .slot-clear {
   display: none;
 }
 
-.age, .search, .help, .about, .pull-list, .error {
+.age, .search, .help, .about, .pull-list, .error, .summary {
 @extend %whiteBox;
 }
 
@@ -57,6 +57,7 @@ margin: 50px auto;
     float: none;
   }
 }
+
 .search {
   text-align: center;
 }
@@ -101,15 +102,8 @@ form {
   }
 }
 
-
-
 .issue .unpull-button {
   display: none;
-}
-
-.release-date {
-  // display: inline-block;
-  // float: left;
 }
 
 .age footer {

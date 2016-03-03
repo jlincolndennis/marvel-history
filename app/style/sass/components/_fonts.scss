@@ -48,14 +48,31 @@ nav a {
 
 }
 
+.summary {
+  text-align: center;
+  a {
+    color: black;
+    &:hover {
+      color: rgb(105, 106, 108);
+      // border: 2px solid rgb(105, 106, 108);
+    }
+  }
+  h2 {
+    font-family: "Bangers";
+    font-size: 1.75em;
+    font-weight: normal;
+  }
+}
+
+.collapse {
+  color: $marvelRed;
+
+}
+
 .search h4 {
   margin-bottom: 20px;
 }
 
-// .details a {
-//   color: $marvelRed;
-//   text-decoration: none;
-// }
 
 h2 {
   font-size: 1.5em;
@@ -74,23 +91,21 @@ h5 {
   @extend %yellowBox;
 }
 
+
 .tally {
   margin-left: 20px;
 }
 
+.sum {
+  // display: block;
+  // width: 275px;
+  margin-right: 10px;
+}
+
 .pull-button, .unpull-button {
-  // float: left;
   cursor: pointer;
 }
 
-// .age footer {
-//   a {
-//     font-size: 1.5em;
-//     font-family: 'Bangers';
-//     color: black;
-//     text-decoration: none;
-//   }
-// }
 
 footer a {
   color: white;

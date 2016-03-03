@@ -11,7 +11,7 @@ header img {
   width: 200px;
   margin: -7px 7px; }
 
-.age, .search, .help, .about, .pull-list, .error {
+.age, .search, .help, .about, .pull-list, .error, .summary {
   width: 800px;
   margin: 15px auto;
   padding: 15px;
@@ -130,6 +130,20 @@ nav a {
 .about a:hover, .help a:hover, .pull-list a:hover, .details a:hover {
   text-decoration: underline; }
 
+.summary {
+  text-align: center; }
+  .summary a {
+    color: black; }
+    .summary a:hover {
+      color: #696a6c; }
+  .summary h2 {
+    font-family: "Bangers";
+    font-size: 1.75em;
+    font-weight: normal; }
+
+.collapse {
+  color: #e82126; }
+
 .search h4 {
   margin-bottom: 20px; }
 
@@ -145,6 +159,9 @@ h5 {
 
 .tally {
   margin-left: 20px; }
+
+.sum {
+  margin-right: 10px; }
 
 .pull-button, .unpull-button {
   cursor: pointer; }

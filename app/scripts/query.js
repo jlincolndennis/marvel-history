@@ -74,9 +74,6 @@ $(function() {
 
     // Generate Issue Template
     $('.about, .help, .pull-list').hide();
-    $('.container').empty();
-    $('.container').append('<div class="age"><h4 class="label">Modern Age: 1986 - Now!</h4><h4 class="label tally" id="modern-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="modern results"></div></div><div class="age"><h4 class="label">Bronze Age: 1971 - 1985</h4><h4 id ="bronze-tally" class="label tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="bronze results"></div></div><div class="age"><h4 class="label">Silver Age: 1956 - 1970</h4><h4 class="label tally" id="silver-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="silver results"></div></div><div class="age"><h4 class="label">Golden Age: 1930 - 1955</h4><h4 class="label tally" id="golden-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="golden results"></div></div>');
-    $('.age').show();
 
     //  Create date One Week from selected
     var startDate = pad(selectedMonth) + "-" + pad(selectedDate);
@@ -114,6 +111,14 @@ $(function() {
       }
       return (pad(month) + "-" + pad(day));
     }
+    var textStartMonth = monthNames[(startDate.substr(0,2)-1)];
+    var textStartDay = startDate.substr(3,2);
+    var textEndMonth = monthNames[(oneWeekLater.substr(0,2)-1)];
+    var textEndDay = oneWeekLater.substr(3, 2);
+
+    $('.container').empty();
+    $('.container').append('<div class="summary"><h2>Titles Released between '+textStartMonth+'  '+textStartDay+' and '+textEndMonth+' '+textEndDay+'</h2><p>Click an age to jump to those results!</p><a href="#modernresult"><h4 class="label sum" id="modern-summary">Modern Age (0)</h4></a><a href="#bronzeresult"><h4 class="label sum" id="bronze-summary">Bronze Age (0)</h4></a><a href="#silverresult"><h4 class="label sum" id="silver-summary">Silver Age (0)</h4></a><a href="#goldenresult"><h4 class="label sum" id="golden-summary">Golden Age (0)</h4></a></div><div class="age" id="modern"><a name="modernresult"><h4 class="label">Modern Age: 1986 - Now!</h4></a><h4 class="label tally" id="modern-tally">No Results!</h4><h5 class="collapse">-Click Box To Show/Hide Results-</h5><div class="modern results"></div></div><div class="age" id="bronze"><a name="bronzeresult"><h4 class="label">Bronze Age: 1971 - 1985</h4></a><h4 id ="bronze-tally" class="label tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="bronze results"></div></div><div class="age" id="silver"><a name="silverresult"><h4 class="label">Silver Age: 1956 - 1970</h4></a><h4 class="label tally" id="silver-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="silver results"></div></div><div class="age" id="golden"><a name="goldenresult"><h4 class="label">Golden Age: 1930 - 1955</h4></a><h4 class="label tally" id="golden-tally">No Results!</h4><h5 class="collapse">&lt;&lt; Click To Show/Hide Results</h5><div class="golden results"></div></div>');
+    $('.age').show();
 
     // Call Generation
     var privateKey = "8b4c043b0bdca8eb69f8896595cd3b9ee9bf6673"
@@ -244,37 +249,66 @@ $(function() {
             // Generage Result Tally Boxes
             var modernResults = $('.modern article').length;
 
+            if (modernResults === 0) {
+              $("#modern").hide();
+            }
+
             if (modernResults === 1) {
-              $('#modern-tally').html(modernResults+ "Result!")
+              $('#modern-tally').html(modernResults+ " Result!");
+              $('#modern-summary').html("Modern Age ("+modernResults+")");
             } else {
               $('#modern-tally').html(modernResults+" Results!");
-            }
-            if (modernResults === 0) {
-              $(".modern").hide()
+              $('#modern-summary').html("Modern Age ("+modernResults+")");
             }
 
             var bronzeResults = $('.bronze article').length;
 
+            if (bronzeResults === 0) {
+              $("#bronze").hide();
+            }
+
             if (bronzeResults === 1){
+              $("#bronze").show();
               $('#bronze-tally').html(bronzeResults+" Result!");
+              $('#bronze-summary').html("Bronze Age ("+bronzeResults+")");
+
             } else {
+              // $("#bronze").show();
               $('#bronze-tally').html(bronzeResults+" Results!");
+              $('#bronze-summary').html("Bronze Age ("+bronzeResults+")");
             }
 
             var silverResults = $('.silver article').length;
 
+            if (silverResults === 0) {
+              $("#silver").hide()
+            }
+
             if (silverResults === 1) {
-              $('#silver-tally').html(silverResults+" Result!")
+              $("#silver").show();
+              $('#silver-tally').html(silverResults+" Result!");
+              $('#silver-summary').html("Silver Age ("+silverResults+")");
             } else {
+              // $("#silver").show();
               $('#silver-tally').html(silverResults+" Results!");
+              $('#silver-summary').html("Silver Age ("+silverResults+")");
             }
 
             var goldenResults = $('.golden article').length;
+            console.log(goldenResults);
+
+            if (goldenResults === 0) {
+              $("#golden").hide()
+            }
 
             if (goldenResults === 1){
+              $("#golden").show()
               $('#golden-tally').html(goldenResults+" Result!");
+              $('#golden-summary').html("Golden Age ("+goldenResults+")");
             } else {
+              // $("#golden").show()
               $('#golden-tally').html(goldenResults+" Results!");
+              $('#golden-summary').html("Golden Age ("+goldenResults+")");
             }
         } // close if (pubDate....)
         } // close for loop
@@ -292,17 +326,17 @@ $(function() {
       marvelCall(modernNLow, modernNHigh, "modern");
       marvelCall(modernMLow, modernMHigh, "modern");
       marvelCall(modernLLow, modernLHigh, "modern");
-      marvelCall(modernKLow, modernKHigh, "modern");
-      marvelCall(modernJLow, modernJHigh, "modern");
-      marvelCall(modernILow, modernIHigh, "modern");
-      marvelCall(modernHLow, modernHHigh, "modern");
-      marvelCall(modernGLow, modernGHigh, "modern");
-      marvelCall(modernFLow, modernFHigh, "modern");
-      marvelCall(modernELow, modernEHigh, "modern");
-      marvelCall(modernDLow, modernDHigh, "modern");
-      marvelCall(modernCLow, modernCHigh, "modern");
-      marvelCall(modernBLow, modernBHigh, "modern");
-      marvelCall(modernALow, modernAHigh, "modern");
+      // marvelCall(modernKLow, modernKHigh, "modern");
+      // marvelCall(modernJLow, modernJHigh, "modern");
+      // marvelCall(modernILow, modernIHigh, "modern");
+      // marvelCall(modernHLow, modernHHigh, "modern");
+      // marvelCall(modernGLow, modernGHigh, "modern");
+      // marvelCall(modernFLow, modernFHigh, "modern");
+      // marvelCall(modernELow, modernEHigh, "modern");
+      // marvelCall(modernDLow, modernDHigh, "modern");
+      // marvelCall(modernCLow, modernCHigh, "modern");
+      // marvelCall(modernBLow, modernBHigh, "modern");
+      // marvelCall(modernALow, modernAHigh, "modern");
     }
     modernCall();
 
