@@ -295,7 +295,6 @@ $(function() {
             }
 
             var goldenResults = $('.golden article').length;
-            console.log(goldenResults);
 
             if (goldenResults === 0) {
               $("#golden").hide()
@@ -326,17 +325,17 @@ $(function() {
       marvelCall(modernNLow, modernNHigh, "modern");
       marvelCall(modernMLow, modernMHigh, "modern");
       marvelCall(modernLLow, modernLHigh, "modern");
-      // marvelCall(modernKLow, modernKHigh, "modern");
-      // marvelCall(modernJLow, modernJHigh, "modern");
-      // marvelCall(modernILow, modernIHigh, "modern");
-      // marvelCall(modernHLow, modernHHigh, "modern");
-      // marvelCall(modernGLow, modernGHigh, "modern");
-      // marvelCall(modernFLow, modernFHigh, "modern");
-      // marvelCall(modernELow, modernEHigh, "modern");
-      // marvelCall(modernDLow, modernDHigh, "modern");
-      // marvelCall(modernCLow, modernCHigh, "modern");
-      // marvelCall(modernBLow, modernBHigh, "modern");
-      // marvelCall(modernALow, modernAHigh, "modern");
+      marvelCall(modernKLow, modernKHigh, "modern");
+      marvelCall(modernJLow, modernJHigh, "modern");
+      marvelCall(modernILow, modernIHigh, "modern");
+      marvelCall(modernHLow, modernHHigh, "modern");
+      marvelCall(modernGLow, modernGHigh, "modern");
+      marvelCall(modernFLow, modernFHigh, "modern");
+      marvelCall(modernELow, modernEHigh, "modern");
+      marvelCall(modernDLow, modernDHigh, "modern");
+      marvelCall(modernCLow, modernCHigh, "modern");
+      marvelCall(modernBLow, modernBHigh, "modern");
+      marvelCall(modernALow, modernAHigh, "modern");
     }
     modernCall();
 
