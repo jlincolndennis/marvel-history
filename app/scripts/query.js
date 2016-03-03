@@ -294,17 +294,17 @@ $(function() {
     marvelCall(modernHLow, modernHHigh, "modern");
     marvelCall(modernGLow, modernGHigh, "modern");
     marvelCall(modernFLow, modernFHigh, "modern");
-    // marvelCall(modernELow, modernEHigh, "modern");
-    // marvelCall(modernDLow, modernDHigh, "modern");
-    // marvelCall(modernCLow, modernCHigh, "modern");
-    // marvelCall(modernBLow, modernBHigh, "modern");
-    // marvelCall(modernALow, modernAHigh, "modern");
+    marvelCall(modernELow, modernEHigh, "modern");
+    marvelCall(modernDLow, modernDHigh, "modern");
+    marvelCall(modernCLow, modernCHigh, "modern");
+    marvelCall(modernBLow, modernBHigh, "modern");
+    marvelCall(modernALow, modernAHigh, "modern");
   }
     modernCall();
 
-    // marvelCall(bronzeLow, bronzeHigh, "bronze");
-    // marvelCall(silverLow, silverHigh, "silver");
-    // marvelCall(goldenLow, goldenHigh, "golden");
+    marvelCall(bronzeLow, bronzeHigh, "bronze");
+    marvelCall(silverLow, silverHigh, "silver");
+    marvelCall(goldenLow, goldenHigh, "golden");
 
     // // Sort Modern Age Results by Year
     // console.log($('.modern .issue'));
