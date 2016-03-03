@@ -208,7 +208,7 @@ $(function() {
           // console.log("Sort Date: "+sortDate);
           // console.log(typeof sortDate);
 
-          console.log(issueTitle+": "+imageArray);
+          // console.log(issueTitle+": "+imageArray);
           var imagePath
           if (issues[i].images.length === 0 ){
             imagePath = "https://www.fillmurray.com/200/300"
@@ -216,19 +216,28 @@ $(function() {
             imagePath = issues[i].images[0].path + "/portrait_incredible." + issues[i].images[0].extension;
 
           }
-          console.log(issueTitle+"- PATH: "+imagePath);
+          // console.log(issueTitle+"- PATH: "+imagePath);
           if (pubDate >= startDate && pubDate <= oneWeekLater) {
+
             var plotDescription = issues[i].description;
             if (plotDescription === null) {
               plotDescription = "Description unavailable, but I bet some Super Rad comics stuff happens! Bad guys doing bad things! Only our Heroes can stop them! Fisticuffs! That sort of thing. Also, the older this particular comic is, the more likely it is to have problematic representations of women, people of color, and LGBTQ folks. So... yeah.";
             }
 
-            $("."+age).append("<article class='issue' data-year='"+pubYear+"' id='"+issues[i].id+"'><div class='cover'><img src='"+imagePath+"'></div><div class='details'><h2 class='issue-title'><a href='"+issueUrl+"' target='_blank' class='issue-url'>"+issueTitle+"</a></h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a> | <a class='pull-list-jump' href='#pull'>Jump To Pull List!</a></p></div></article>");
-
+            $("."+age).append("<article class='issue' data-year='"+pubYear+"' data-title='"+issueTitle+"' id='"+issues[i].id+"'><div class='cover'><img src='"+imagePath+"'></div><div class='details'><h2 class='issue-title'><a href='"+issueUrl+"' target='_blank' class='issue-url'>"+issueTitle+"</a></h2><h3 class='release-date'>Originally released on: "+textMonth+" "+textDay+" "+pubYear+"</h3><h4 class='pull-button'>Add to Pull List!</h4><p class='issue-summary'>"+plotDescription+"</p><p><a href='#'>Back to top!</a> | <a class='pull-list-jump' href='#pull'>Jump To Pull List!</a></p></div></article>");
+            console.log($('.modern .issue').find('.issue-title').text());
             // Sort Modern Age Issues
             var modernIssues = $('.modern .issue');
             modernIssues.sort(function(low, high) {
-            return $(high).data("year") - $(low).data("year")
+              var x = $(high).data("year") - $(low).data("year");
+             if (x === 0)  {
+                return $(low).data("title") > $(high).data("title") ? 1 : -1
+              } else {
+                return x
+              };
+              // return $(high).data("year") - $(low).data("year");
+
+            // return x === 0 ? $(low).find('.issue-title').text() - $(high).find('.issue-title').text() :  x
             });
             $('.modern').html(modernIssues);
 
@@ -285,17 +294,17 @@ $(function() {
     marvelCall(modernHLow, modernHHigh, "modern");
     marvelCall(modernGLow, modernGHigh, "modern");
     marvelCall(modernFLow, modernFHigh, "modern");
-    marvelCall(modernELow, modernEHigh, "modern");
-    marvelCall(modernDLow, modernDHigh, "modern");
-    marvelCall(modernCLow, modernCHigh, "modern");
-    marvelCall(modernBLow, modernBHigh, "modern");
-    marvelCall(modernALow, modernAHigh, "modern");
+    // marvelCall(modernELow, modernEHigh, "modern");
+    // marvelCall(modernDLow, modernDHigh, "modern");
+    // marvelCall(modernCLow, modernCHigh, "modern");
+    // marvelCall(modernBLow, modernBHigh, "modern");
+    // marvelCall(modernALow, modernAHigh, "modern");
   }
     modernCall();
 
-    marvelCall(bronzeLow, bronzeHigh, "bronze");
-    marvelCall(silverLow, silverHigh, "silver");
-    marvelCall(goldenLow, goldenHigh, "golden");
+    // marvelCall(bronzeLow, bronzeHigh, "bronze");
+    // marvelCall(silverLow, silverHigh, "silver");
+    // marvelCall(goldenLow, goldenHigh, "golden");
 
     // // Sort Modern Age Results by Year
     // console.log($('.modern .issue'));
