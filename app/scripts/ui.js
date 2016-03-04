@@ -55,27 +55,27 @@ $(function () {
     event.preventDefault();
     $('.pull-list').toggle();
     $('.help, .about').hide();
-    if (localStorage.book1 === "Empty!") {
+    if (localStorage.book1 === undefined || localStorage.book1 === "Empty!") {
       $('#del01').hide();
       } else {
       $('#del01').show();
     }
-    if (localStorage.book2 === "Empty!") {
+    if (localStorage.book2 === undefined || localStorage.book2 === "Empty!") {
       $('#del02').hide();
     } else {
       $('#del02').show();
     }
-    if (localStorage.book3 === "Empty!") {
+    if (localStorage.book3 === undefined || localStorage.book3 === "Empty!") {
       $('#del03').hide();
     } else {
       $('#del03').show();
     }
-    if (localStorage.book4 === "Empty!") {
+    if (localStorage.book4 === undefined || localStorage.book4 === "Empty!") {
       $('#del04').hide();
     } else {
       $('#del04').show();
     }
-    if (localStorage.book5 === "Empty!") {
+    if (localStorage.book5 === undefined || localStorage.book5 === "Empty!") {
       $('#del05').hide();
     } else {
       $('#del05').show();
