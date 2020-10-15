@@ -1,4 +1,4 @@
-# [This Week In Marvel History](http://jlincolndennis.github.io/marvel-history.github.io/index.html)
+# This Week In Marvel History
 
 Marvel comics has opened up a series of APIs to their complete publishing history database. Providing this data to comics fans is very exciting, but with so much data available, it can be hard to find interesting information if you are not looking for something specific.
 
