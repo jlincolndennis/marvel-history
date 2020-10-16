@@ -185,7 +185,7 @@ $(function() {
 
     function marvelCall (low, high, age) {
       // Generate call url
-      var url = 'http://gateway.marvel.com:80/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate%2Ctitle&limit=100&apikey=' + publicKey;
+      var url = 'https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateRange='+low+'-' + startDate + '%2C%20'+high+'-' + oneWeekLater + '&issueNumber=1&orderBy=-onsaleDate%2Ctitle&limit=100&apikey=' + publicKey;
 
       var timeStamp = new Date().getTime();
       var hash = CryptoJS.MD5(timeStamp + privateKey + publicKey);
